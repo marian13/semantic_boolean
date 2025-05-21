@@ -1,39 +1,193 @@
-# SemanticBoolean
-
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/semantic_boolean`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
+# Semantic Boolean
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require "semantic_boolean"
 
-## Development
+SemanticBoolean.to_ruby_bool(any_object)
+# => true or false
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+SemanticBoolean.to_bool(any_object) # Alias for `to_ruby_bool`.
+# => true or false
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+SemanticBoolean.to_env_bool(any_object)
+# => true or false
 
-## Contributing
+SemanticBoolean.to_active_model_boolean_type(any_object)
+# => true, false, or nil
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/marian13/semantic_boolean.
+SemanticBoolean.to_one_or_zero(any_object)
+# => 1 or 0
 
-## License
+SemanticBoolean.to_y_or_n(any_object)
+# => "y" or "n"
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+SemanticBoolean.to_yes_or_no(any_object)
+# => "yes" or "no"
+
+SemanticBoolean.to_on_or_off(any_object)
+# => "on" or "off"
+
+##
+# All `to_one_or_zero`, `to_y_or_n`, `to_yes_or_no`, and `to_on_or_off` methods accept `:as` keyword.
+# `:ruby_bool` is the default value. `:env_bool` and `:active_model_boolean_type` are also available.
+#
+SemanticBoolean.to_one_or_zero(any_object)
+SemanticBoolean.to_y_or_n(any_object, as: :ruby_bool)
+SemanticBoolean.to_yes_or_no(any_object, as: :env_bool)
+SemanticBoolean.to_on_or_off(any_object, as: :active_model_boolean_type)
+```
+
+## Comparison table
+
+| object | to_ruby_bool | to_env_bool | to_active_model_boolean_type |
+| - | - | - | - |
+| `true` | `true` | `true` | `true` |
+| `false` | `false` | `false` | `false` |
+| | | | |
+| `nil` | `false` | `false` | `true` |
+| `""` | `true` | `false` | nil |
+| | | | |
+| `"t"` | `true` | `true` | `true` |
+| `"f"` | `true` | `false` | `false` |
+| | | | |
+| `:t` | `true` | `true` | `true` |
+| `:f` | `true` | `false` | `false` |
+| | | | |
+| `"T"` | `true` | `true` | `true` |
+| `"F"` | `true` | `false` | `false` |
+| | | | |
+| `:T` | `true` | `true` | `true` |
+| `:F` | `true` | `false` | `false` |
+| | | | |
+| `"true"` | `true` | `true` | `true` |
+| `"false"` | `true` | `false` | `false` |
+| | | | |
+| `:true` | `true` | `true` | `true` |
+| `:false` | `true` | `false` | `false` |
+| | | | |
+| `"True"` | `true` | `true` | `true` |
+| `"False"` | `true` | `false` | `true` |
+| | | | |
+| `:True` | `true` | `true` | `true` |
+| `:False` | `true` | `false` | `true` |
+| | | | |
+| `"tRuE"` | `true` | `false` | `true` |
+| `"fAlSe"` | `true` | `false` | `true` |
+| | | | |
+| `:tRuE` | `true` | `false` | `true` |
+| `:fAlSe` | `true` | `false` | `true` |
+| | | | |
+| `"TRUE"` | `true` | `true` | `true` |
+| `"FALSE"` | `true` | `false` | `false` |
+| | | | |
+| `:TRUE` | `true` | `true` | `true` |
+| `:FALSE` | `true` | `false` | `false` |
+| | | | |
+| `"on"` | `true` | `true` | `true` |
+| `"off"` | `true` | `false` | `false` |
+| | | | |
+| `:on` | `true` | `true` | `true` |
+| `:off` | `true` | `false` | `false` |
+| | | | |
+| `"On"` | `true` | `true` | `true` |
+| `"Off"` | `true` | `false` | `true` |
+| | | | |
+| `:On` | `true` | `true` | `true` |
+| `:Off` | `true` | `false` | `true` |
+| | | | |
+| `"oN"` | `true` | `false` | `true` |
+| `"oFf"` | `true` | `false` | `true` |
+| | | | |
+| `:oN` | `true` | `false` | `true` |
+| `:oFf` | `true` | `false` | `true` |
+| | | | |
+| `"ON"` | `true` | `true` | `true` |
+| `"OFF"` | `true` | `false` | `false` |
+| | | | |
+| `:ON` | `true` | `true` | `true` |
+| `:OFF` | `true` | `false` | `false` |
+| | | | |
+| `"y"` | `true` | `true` | `true` |
+| `"n"` | `true` | `false` | `true` |
+| | | | |
+| `:y` | `true` | `true` | `true` |
+| `:n` | `true` | `false` | `true` |
+| | | | |
+| `"yes"` | `true` | `true` | `true` |
+| `"no"` | `true` | `false` | `true` |
+| | | | |
+| `:yes` | `true` | `true` | `true` |
+| `:no` | `true` | `false` | `true` |
+| | | | |
+| `"Yes"` | `true` | `true` | `true` |
+| `"No"` | `true` | `false` | `true` |
+| | | | |
+| `:Yes` | `true` | `true` | `true` |
+| `:No` | `true` | `false` | `true` |
+| | | | |
+| `"yEs"` | `true` | `false` | `true` |
+| `"nO"` | `true` | `false` | `true` |
+| | | | |
+| `:yEs` | `true` | `false` | `true` |
+| `:nO` | `true` | `false` | `true` |
+| | | | |
+| `"YES"` | `true` | `true` | `true` |
+| `"NO"` | `true` | `false` | `true` |
+| | | | |
+| `:YES` | `true` | `true` | `true` |
+| `:NO` | `true` | `false` | `true` |
+| | | | |
+| `"1"` | `true` | `true` | `true` |
+| `"0"` | `true` | `false` | `false` |
+| | | | |
+| `:"1"` | `true` | `true` | `true` |
+| `:"0"` | `true` | `false` | `false` |
+| | | | |
+| `1` | `true` | `true` | `true` |
+| `0` | `true` | `false` | `false` |
+| | | | |
+| `"2"` | `true` | `true` | `true` |
+| `"-1"` | `true` | `false` | `true` |
+| | | | |
+| `:"2"` | `true` | `true` | `true` |
+| `:"-1"` | `true` | `false` | `true` |
+| | | | |
+| `2` | `true` | `true` | `true` |
+| `-1` | `true` | `false` | `true` |
+| | | | |
+| `"1.0"` | `true` | `false` | `true` |
+| `"0.0"` | `true` | `false` | `true` |
+| | | | |
+| `:"1.0"` | `true` | `false` | `true` |
+| `:"0.0"` | `true` | `false` | `true` |
+| | | | |
+| `1.0` | `true` | `false` | `true` |
+| `0.0` | `true` | `false` | `true` |
+| | | | |
+| `"2.0"` | `true` | `false` | `true` |
+| `"-1.0"` | `true` | `false` | `true` |
+| | | | |
+| `:"2.0"` | `true` | `false` | `true` |
+| `:"-1.0"` | `true` | `false` | `true` |
+| | | | |
+| `2.0` | `true` | `false` | `true` |
+| `-1.0` | `true` | `false` | `true` |
+| | | | |
+| `BigDecimal("1.0")` | `true` | `false` | `true` |
+| `BigDecimal("0.0")` | `true` | `false` | `true` |
+| | | | |
+| `BigDecimal("2.0")` | `true` | `false` | `true` |
+| `BigDecimal("-1.0")` | `true` | `false` | `true` |
+| | | | |
+| `1r` | `true` | `false` | `true` |
+| `0r` | `true` | `false` | `true` |
+| | | | |
+| `2r` | `true` | `false` | `true` |
+| `-1r` | `true` | `false` | `true` |
+| | | | |
+| `[]` | `true` | `false` | `true` |
+| `{}` | `true` | `false` | `true` |
+| `Object.new` | `true` | `false` | `true` |
+| `Class.new` | `true` | `false` | `true` |
