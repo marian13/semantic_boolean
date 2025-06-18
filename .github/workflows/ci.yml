@@ -20,7 +20,7 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
       - name: Run Rubocop with Standard Ruby
-        run: bundle exec standard
+        run: bundle exec standardrb
       - name: Run Yard-Junk
         run: bundle exec yard-junk
 
