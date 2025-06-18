@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    name: Lint
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+      - name: Run Rubocop with Standard Ruby
+        run: bundle exec standard
+      - name: Run Yard-Junk
+        run: bundle exec yard-junk
+
+  test:
+    needs:
+      - lint
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        gemfile:
+          - Gemfile
+        ruby:
+          - 2.0
+          - 2.1
+          - 2.2
+          - 2.3
+          - 2.4
+          - 2.5
+          - 2.6
+          - 2.7
+          - "3.0"
+          - 3.1
+          - 3.2
+          - 3.3
+          - 3.4
+          - "3.5.0-preview1"
+          - "jruby-9.4"
+          - "jruby-10.0"
+          - "truffleruby-22.0"
+          - "truffleruby-23.0"
+          - "truffleruby-24.0"
+    env:
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+
+    name: "Test Ruby `${{ matrix.ruby }}` with Gemfile `${{ matrix.gemfile }}`"
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Set up Ruby `${{ matrix.ruby }}`"
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run RSpec
+        run: bundle exec rspec
+      - name: Set up Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+      - name: Merge coverage reports into single file
+        run: npx --yes lcov-result-merger 'coverage/**/lcov.info' coverage/lcov.info
+      - name: Configure coverage reports for Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          flag-name: run-${{ matrix.ruby }}-${{ matrix.gemfile }}
+          parallel: true
+          path-to-lcov: "./coverage/lcov.info"
+
+  coverage:
+    needs:
+      - test
+    runs-on: ubuntu-24.04
+    name: Gather coverage
+    steps:
+      - name: Upload coverage reports to Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true
