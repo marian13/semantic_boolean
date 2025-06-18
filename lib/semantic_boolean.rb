@@ -51,18 +51,41 @@ module SemanticBoolean
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
-    def to_env_bool(object)
-      string = object.to_s
+    if ::Gem::Version.create(::RUBY_VERSION) >= ::Gem::Version.create("2.5")
+      def to_env_bool(object)
+        string = object.to_s
 
-      return false if string.empty?
+        return false if string.empty?
 
-      return true if TO_ENV_BOOL_TRUE_VALUES.include?(string)
+        return true if TO_ENV_BOOL_TRUE_VALUES.include?(string)
 
-      integer = ::Kernel.Integer(string, exception: false)
+        integer = ::Kernel.Integer(string, exception: false)
 
-      return false unless integer
+        return false unless integer
 
-      integer > 0
+        integer > 0
+      end
+    else
+      # rubocop:disable Lint/SuppressedExceptionInNumberConversion
+      def to_env_bool(object)
+        string = object.to_s
+
+        return false if string.empty?
+
+        return true if TO_ENV_BOOL_TRUE_VALUES.include?(string)
+
+        integer =
+          begin
+            ::Kernel.Integer(string)
+          rescue
+            nil
+          end
+
+        return false unless integer
+
+        integer > 0
+      end
+      # rubocop:enable Lint/SuppressedExceptionInNumberConversion
     end
 
     ##

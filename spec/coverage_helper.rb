@@ -16,7 +16,7 @@ if !RUBY_ENGINE.match?(/truffleruby/)
   ])
 
   SimpleCov.start do
-    if RUBY_VERSION >= "2.5"
+    if Gem::Version.create(RUBY_VERSION) >= ::Gem::Version.create("2.5")
       enable_coverage :branch
     end
 
