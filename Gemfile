@@ -4,8 +4,8 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "rspec"
+gem "standard"
+
 gem "irb"
-
-gem "rspec", "~> 3.0"
-
-gem "standard", "~> 1.3"
+gem "bigdecimal"
