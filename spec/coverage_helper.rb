@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if !RUBY_ENGINE.include?("truffleruby")
+if !RUBY_ENGINE.include?("truffleruby") && Gem::Version.create(RUBY_VERSION) >= ::Gem::Version.create("2.4")
   require "simplecov"
   require "simplecov-lcov"
 
