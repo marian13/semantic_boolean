@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if !RUBY_ENGINE.match?(/truffleruby/)
+if !RUBY_ENGINE.include?("truffleruby")
   require "simplecov"
   require "simplecov-lcov"
 
