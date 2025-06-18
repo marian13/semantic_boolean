@@ -51,7 +51,7 @@ module SemanticBoolean
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
-    if ::Gem::Version.create(::RUBY_VERSION) >= ::Gem::Version.create("2.5")
+    if ::Gem::Version.create(::RUBY_VERSION) >= ::Gem::Version.create("2.6")
       def to_env_bool(object)
         string = object.to_s
 
