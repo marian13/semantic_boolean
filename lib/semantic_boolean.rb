@@ -124,11 +124,11 @@ module SemanticBoolean
         object.empty?
       when String
         object.empty? ||
-        begin
-          ACTIVE_SUPPORT_CORE_EXT_BLANK_RE.match?(object)
-        rescue ::Encoding::CompatibilityError
-          ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS[object.encoding].match?(object)
-        end
+          begin
+            ACTIVE_SUPPORT_CORE_EXT_BLANK_RE.match?(object)
+          rescue ::Encoding::CompatibilityError
+            ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS[object.encoding].match?(object)
+          end
       when Numeric
         false
       when Time
