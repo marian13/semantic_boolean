@@ -1,5 +1,7 @@
 # Semantic Boolean
 
+[![Coverage Status](https://coveralls.io/repos/github/marian13/semantic_boolean/badge.svg?branch=main)](https://coveralls.io/github/marian13/semantic_boolean?branch=main)
+
 ## Usage
 
 ```ruby
