@@ -2,6 +2,7 @@
 
 require "bigdecimal"
 
+# rubocop:disable Lint/BooleanSymbol
 RSpec.describe SemanticBoolean do
   example_group "to_bool methods" do
     def bulk_to_bool(object)
@@ -234,3 +235,4 @@ RSpec.describe SemanticBoolean do
     end
   end
 end
+# rubocop:enable Lint/BooleanSymbol

@@ -20,9 +20,9 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
       - name: Run Rubocop with Standard Ruby
-        run: bundle exec standardrb
+        run: gem install standard && standardrb
       - name: Run Yard-Junk
-        run: bundle exec yard-junk
+        run: gem install yard-junk && yard-junk
 
   test:
     needs:

@@ -2,6 +2,7 @@
 
 require_relative "semantic_boolean/version"
 
+# rubocop:disable Lint/BooleanSymbol
 module SemanticBoolean
   class << self
     TO_ENV_BOOL_TRUE_VALUES = ["t", "T", "true", "True", "TRUE", "on", "On", "ON", "y", "Y", "yes", "Yes", "YES"].to_set.freeze
@@ -95,3 +96,4 @@ module SemanticBoolean
     end
   end
 end
+# rubocop:enable Lint/BooleanSymbol
