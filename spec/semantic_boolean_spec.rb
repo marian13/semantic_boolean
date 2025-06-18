@@ -9,158 +9,160 @@ RSpec.describe SemanticBoolean do
       {
         ruby_bool: SemanticBoolean.to_ruby_bool(object),
         env_bool: SemanticBoolean.to_env_bool(object),
-        active_model_boolean_type: SemanticBoolean.to_active_model_boolean_type(object)
+        active_model_boolean_type: SemanticBoolean.to_active_model_boolean_type(object),
+        blank: SemanticBoolean.blank?(object),
+        present: SemanticBoolean.present?(object)
       }
     end
 
-    specify { expect(bulk_to_bool(true)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(false)).to eq({ruby_bool: false, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(true)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(false)).to eq({ruby_bool: false, env_bool: false, active_model_boolean_type: false, blank: true, present: false}) }
 
-    specify { expect(bulk_to_bool(nil)).to eq({ruby_bool: false, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: nil}) }
+    specify { expect(bulk_to_bool(nil)).to eq({ruby_bool: false, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
+    specify { expect(bulk_to_bool("")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: nil, blank: true, present: false}) }
 
-    specify { expect(bulk_to_bool("t")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("f")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool("t")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("f")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:t)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:f)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(:t)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:f)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("T")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("F")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool("T")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("F")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:T)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:F)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(:T)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:F)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("true")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("false")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool("true")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("false")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:true)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:false)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(:true)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:false)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("True")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("False")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("True")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("False")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:True)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:False)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:True)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:False)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("tRuE")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("fAlSe")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("tRuE")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("fAlSe")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:tRuE)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:fAlSe)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:tRuE)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:fAlSe)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("TRUE")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("FALSE")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool("TRUE")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("FALSE")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:TRUE)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:FALSE)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(:TRUE)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:FALSE)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("on")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("off")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool("on")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("off")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:on)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:off)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(:on)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:off)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("On")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("Off")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("On")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("Off")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:On)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:Off)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:On)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:Off)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("oN")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("oFf")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("oN")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("oFf")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:oN)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:oFf)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:oN)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:oFf)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("ON")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("OFF")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool("ON")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("OFF")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:ON)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:OFF)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(:ON)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:OFF)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("y")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("n")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("y")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("n")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:y)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:n)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:y)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:n)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("yes")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("no")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("yes")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("no")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:yes)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:no)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:yes)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:no)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("Yes")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("No")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("Yes")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("No")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:Yes)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:No)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:Yes)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:No)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("yEs")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("nO")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("yEs")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("nO")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:yEs)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:nO)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:yEs)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:nO)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("YES")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("NO")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("YES")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("NO")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:YES)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:NO)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:YES)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:NO)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("1")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool("1")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:"1")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:"0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(:"1")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:"0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(1)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false}) }
+    specify { expect(bulk_to_bool(1)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("2")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("-1")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("2")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("-1")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:"2")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:"-1")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:"2")).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:"-1")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(2)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(-1)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(2)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(-1)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("1.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("0.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("1.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("0.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:"1.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:"0.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:"1.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:"0.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(1.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(0.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(1.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(0.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool("2.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool("-1.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool("2.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool("-1.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(:"2.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(:"-1.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(:"2.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(:"-1.0")).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(2.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(-1.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(2.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(-1.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(BigDecimal("1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(BigDecimal("0.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(BigDecimal("1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(BigDecimal("0.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(BigDecimal("2.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(BigDecimal("-1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(BigDecimal("2.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(BigDecimal("-1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(1r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(0r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(1r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(0r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(2r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(-1r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool(2r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(-1r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool([])).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool({})).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
-    specify { expect(bulk_to_bool(Class.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true}) }
+    specify { expect(bulk_to_bool([])).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
+    specify { expect(bulk_to_bool({})).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
+    specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Class.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
   end
 
   describe "#to_one_or_zero" do

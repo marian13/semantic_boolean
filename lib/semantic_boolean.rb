@@ -24,6 +24,20 @@ module SemanticBoolean
     TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES = [false, 0, "0", :"0", "f", :f, "F", :F, "false", :false, "FALSE", :FALSE, "off", :off, "OFF", :OFF].to_set.freeze
 
     ##
+    # @return [Regexp]
+    # @see https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L136
+    #
+    ACTIVE_SUPPORT_CORE_EXT_BLANK_RE = /\A[[:space:]]*\z/
+
+    ##
+    # @return [Hash]
+    # @see https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L137
+    #
+    ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS = ::Hash.new do |h, enc|
+      h[enc] = ::Regexp.new(ACTIVE_SUPPORT_CORE_EXT_BLANK_RE.source.encode(enc), ACTIVE_SUPPORT_CORE_EXT_BLANK_RE.options | ::Regexp::FIXEDENCODING)
+    end
+
+    ##
     # Returns `false` when `object` is `false` or `nil`. Returns `true` for all the other cases. Just like Ruby does in the control expressions.
     #
     # @param object [Object] Can be any type.
@@ -86,6 +100,54 @@ module SemanticBoolean
         integer > 0
       end
       # rubocop:enable Lint/SuppressedExceptionInNumberConversion
+    end
+
+    ##
+    # Converts `object` to boolean using exactly the same logic as `object.blank?` does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
+    #
+    # @param object [Object] Can be any type.
+    # @return [Boolean]
+    #
+    def blank?(object)
+      case object
+      when NilClass
+        true
+      when FalseClass
+        true
+      when TrueClass
+        false
+      when Array
+        object.empty?
+      when Hash
+        object.empty?
+      when Symbol
+        object.empty?
+      when String
+        object.empty? ||
+        begin
+          ACTIVE_SUPPORT_CORE_EXT_BLANK_RE.match?(object)
+        rescue ::Encoding::CompatibilityError
+          ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS[object.encoding].match?(object)
+        end
+      when Numeric
+        false
+      when Time
+        false
+      when Object
+        respond_to?(:empty?) ? !!empty? : false
+      else
+        object.public_send(:blank?)
+      end
+    end
+
+    ##
+    # Converts `object` to boolean using exactly the same logic as `object.present?` does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
+    #
+    # @param object [Object] Can be any type.
+    # @return [Boolean]
+    #
+    def present?(object)
+      !blank?(object)
     end
 
     ##
