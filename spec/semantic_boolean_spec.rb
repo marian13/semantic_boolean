@@ -166,72 +166,72 @@ RSpec.describe SemanticBoolean do
   describe "#to_one_or_zero" do
     context "when `object` is falsy" do
       specify { expect(SemanticBoolean.to_one_or_zero(false)).to eq(0) }
-      specify { expect(SemanticBoolean.to_one_or_zero(false, as: :ruby_bool)).to eq(0) }
-      specify { expect(SemanticBoolean.to_one_or_zero(false, as: :env_bool)).to eq(0) }
-      specify { expect(SemanticBoolean.to_one_or_zero(false, as: :active_model_boolean_type)).to eq(0) }
-      specify { expect { SemanticBoolean.to_one_or_zero(false, as: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_one_or_zero(false, by: :to_ruby_bool)).to eq(0) }
+      specify { expect(SemanticBoolean.to_one_or_zero(false, by: :to_env_bool)).to eq(0) }
+      specify { expect(SemanticBoolean.to_one_or_zero(false, by: :to_active_model_boolean_type)).to eq(0) }
+      specify { expect { SemanticBoolean.to_one_or_zero(false, by: :not_supported) }.to raise_error(NoMethodError) }
     end
 
     context "when `object` is truthy" do
       specify { expect(SemanticBoolean.to_one_or_zero(true)).to eq(1) }
-      specify { expect(SemanticBoolean.to_one_or_zero(true, as: :ruby_bool)).to eq(1) }
-      specify { expect(SemanticBoolean.to_one_or_zero(true, as: :env_bool)).to eq(1) }
-      specify { expect(SemanticBoolean.to_one_or_zero(true, as: :active_model_boolean_type)).to eq(1) }
-      specify { expect { SemanticBoolean.to_one_or_zero(true, as: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_one_or_zero(true, by: :to_ruby_bool)).to eq(1) }
+      specify { expect(SemanticBoolean.to_one_or_zero(true, by: :to_env_bool)).to eq(1) }
+      specify { expect(SemanticBoolean.to_one_or_zero(true, by: :to_active_model_boolean_type)).to eq(1) }
+      specify { expect { SemanticBoolean.to_one_or_zero(true, by: :not_supported) }.to raise_error(NoMethodError) }
     end
   end
 
   describe "#to_y_or_n" do
     context "when `object` is falsy" do
       specify { expect(SemanticBoolean.to_y_or_n(false)).to eq("n") }
-      specify { expect(SemanticBoolean.to_y_or_n(false, as: :ruby_bool)).to eq("n") }
-      specify { expect(SemanticBoolean.to_y_or_n(false, as: :env_bool)).to eq("n") }
-      specify { expect(SemanticBoolean.to_y_or_n(false, as: :active_model_boolean_type)).to eq("n") }
-      specify { expect { SemanticBoolean.to_y_or_n(false, as: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_y_or_n(false, by: :to_ruby_bool)).to eq("n") }
+      specify { expect(SemanticBoolean.to_y_or_n(false, by: :to_env_bool)).to eq("n") }
+      specify { expect(SemanticBoolean.to_y_or_n(false, by: :to_active_model_boolean_type)).to eq("n") }
+      specify { expect { SemanticBoolean.to_y_or_n(false, by: :not_supported) }.to raise_error(NoMethodError) }
     end
 
     context "when `object` is truthy" do
       specify { expect(SemanticBoolean.to_y_or_n(true)).to eq("y") }
-      specify { expect(SemanticBoolean.to_y_or_n(true, as: :ruby_bool)).to eq("y") }
-      specify { expect(SemanticBoolean.to_y_or_n(true, as: :env_bool)).to eq("y") }
-      specify { expect(SemanticBoolean.to_y_or_n(true, as: :active_model_boolean_type)).to eq("y") }
-      specify { expect { SemanticBoolean.to_y_or_n(true, as: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_y_or_n(true, by: :to_ruby_bool)).to eq("y") }
+      specify { expect(SemanticBoolean.to_y_or_n(true, by: :to_env_bool)).to eq("y") }
+      specify { expect(SemanticBoolean.to_y_or_n(true, by: :to_active_model_boolean_type)).to eq("y") }
+      specify { expect { SemanticBoolean.to_y_or_n(true, by: :not_supported) }.to raise_error(NoMethodError) }
     end
   end
 
   describe "#to_yes_or_no" do
     context "when `object` is falsy" do
       specify { expect(SemanticBoolean.to_yes_or_no(false)).to eq("no") }
-      specify { expect(SemanticBoolean.to_yes_or_no(false, as: :ruby_bool)).to eq("no") }
-      specify { expect(SemanticBoolean.to_yes_or_no(false, as: :env_bool)).to eq("no") }
-      specify { expect(SemanticBoolean.to_yes_or_no(false, as: :active_model_boolean_type)).to eq("no") }
-      specify { expect { SemanticBoolean.to_yes_or_no(false, as: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_yes_or_no(false, by: :to_ruby_bool)).to eq("no") }
+      specify { expect(SemanticBoolean.to_yes_or_no(false, by: :to_env_bool)).to eq("no") }
+      specify { expect(SemanticBoolean.to_yes_or_no(false, by: :to_active_model_boolean_type)).to eq("no") }
+      specify { expect { SemanticBoolean.to_yes_or_no(false, by: :not_supported) }.to raise_error(NoMethodError) }
     end
 
     context "when `object` is truthy" do
       specify { expect(SemanticBoolean.to_yes_or_no(true)).to eq("yes") }
-      specify { expect(SemanticBoolean.to_yes_or_no(true, as: :ruby_bool)).to eq("yes") }
-      specify { expect(SemanticBoolean.to_yes_or_no(true, as: :env_bool)).to eq("yes") }
-      specify { expect(SemanticBoolean.to_yes_or_no(true, as: :active_model_boolean_type)).to eq("yes") }
-      specify { expect { SemanticBoolean.to_yes_or_no(true, as: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_yes_or_no(true, by: :to_ruby_bool)).to eq("yes") }
+      specify { expect(SemanticBoolean.to_yes_or_no(true, by: :to_env_bool)).to eq("yes") }
+      specify { expect(SemanticBoolean.to_yes_or_no(true, by: :to_active_model_boolean_type)).to eq("yes") }
+      specify { expect { SemanticBoolean.to_yes_or_no(true, by: :not_supported) }.to raise_error(NoMethodError) }
     end
   end
 
   describe "#to_on_or_off" do
     context "when `object` is falsy" do
       specify { expect(SemanticBoolean.to_on_or_off(false)).to eq("off") }
-      specify { expect(SemanticBoolean.to_on_or_off(false, as: :ruby_bool)).to eq("off") }
-      specify { expect(SemanticBoolean.to_on_or_off(false, as: :env_bool)).to eq("off") }
-      specify { expect(SemanticBoolean.to_on_or_off(false, as: :active_model_boolean_type)).to eq("off") }
-      specify { expect { SemanticBoolean.to_on_or_off(false, as: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_on_or_off(false, by: :to_ruby_bool)).to eq("off") }
+      specify { expect(SemanticBoolean.to_on_or_off(false, by: :to_env_bool)).to eq("off") }
+      specify { expect(SemanticBoolean.to_on_or_off(false, by: :to_active_model_boolean_type)).to eq("off") }
+      specify { expect { SemanticBoolean.to_on_or_off(false, by: :not_supported) }.to raise_error(NoMethodError) }
     end
 
     context "when `object` is truthy" do
       specify { expect(SemanticBoolean.to_on_or_off(true)).to eq("on") }
-      specify { expect(SemanticBoolean.to_on_or_off(true, as: :ruby_bool)).to eq("on") }
-      specify { expect(SemanticBoolean.to_on_or_off(true, as: :env_bool)).to eq("on") }
-      specify { expect(SemanticBoolean.to_on_or_off(true, as: :active_model_boolean_type)).to eq("on") }
-      specify { expect { SemanticBoolean.to_on_or_off(true, as: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_on_or_off(true, by: :to_ruby_bool)).to eq("on") }
+      specify { expect(SemanticBoolean.to_on_or_off(true, by: :to_env_bool)).to eq("on") }
+      specify { expect(SemanticBoolean.to_on_or_off(true, by: :to_active_model_boolean_type)).to eq("on") }
+      specify { expect { SemanticBoolean.to_on_or_off(true, by: :not_supported) }.to raise_error(NoMethodError) }
     end
   end
 end
