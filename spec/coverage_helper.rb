@@ -23,4 +23,3 @@ if !RUBY_ENGINE.match?(/truffleruby/)
     add_filter "/spec/"
   end
 end
-
