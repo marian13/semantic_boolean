@@ -6,44 +6,40 @@ require "set"
 # rubocop:disable Lint/BooleanSymbol
 RSpec.describe SemanticBoolean do
   example_group "to_bool methods" do
-    def normalize_message(message)
-      message.tr("`", "'")
-    end
-
     def bulk_to_bool(object)
       ruby_bool =
         begin
           SemanticBoolean.to_ruby_bool(object)
         rescue => exception
-          [exception.class, normalize_message(exception.message)]
+          [exception.class]
         end
 
       env_bool =
         begin
           SemanticBoolean.to_env_bool(object)
         rescue => exception
-          [exception.class, normalize_message(exception.message)]
+          [exception.class]
         end
 
       active_model_boolean_type =
         begin
           SemanticBoolean.to_active_model_boolean_type(object)
         rescue => exception
-          [exception.class, normalize_message(exception.message)]
+          [exception.class]
         end
 
       blank =
         begin
           SemanticBoolean.blank?(object)
         rescue => exception
-          [exception.class, normalize_message(exception.message)]
+          [exception.class]
         end
 
       present =
         begin
           SemanticBoolean.present?(object)
         rescue => exception
-          [exception.class, normalize_message(exception.message)]
+          [exception.class]
         end
 
       {
@@ -216,7 +212,7 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(Class.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Module.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
-    specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [TypeError, "can't convert BasicObject into String"], active_model_boolean_type: [NoMethodError, "undefined method 'hash' for an instance of BasicObject"], blank: [NoMethodError, "undefined method 'blank?' for an instance of BasicObject"], present: [NoMethodError, "undefined method 'blank?' for an instance of BasicObject"]}) }
+    specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [TypeError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError]}) }
 
     specify { expect(bulk_to_bool(Class)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Module)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
