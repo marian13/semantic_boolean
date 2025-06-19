@@ -51,6 +51,16 @@ RSpec.describe SemanticBoolean do
       }
     end
 
+    let(:custom_class_with_blank) do
+      Class.new do
+        def blank?
+          true
+        end
+      end
+    end
+
+    let(:custom_object_with_blank) { custom_class_with_blank.new }
+
     specify { expect(bulk_to_bool(true)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(false)).to eq({ruby_bool: false, env_bool: false, active_model_boolean_type: false, blank: true, present: false}) }
 
@@ -241,6 +251,8 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(Time.now)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Date.new(2025))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(DateTime.new(2025))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+
+    specify { expect(bulk_to_bool(custom_object_with_blank)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
   end
 
   describe "#to_one_or_zero" do

@@ -8,7 +8,7 @@ require "set"
 module SemanticBoolean
   class << self
     ##
-    # Truthy values in `to_env_bool` terms.
+    # Truthy values in `SemanticBoolean.to_env_bool` terms.
     #
     # @return [Array<String>]
     #
@@ -24,13 +24,19 @@ module SemanticBoolean
     TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES = [false, 0, "0", :"0", "f", :f, "F", :F, "false", :false, "FALSE", :FALSE, "off", :off, "OFF", :OFF].to_set.freeze
 
     ##
+    # Regexp to match falsy string values in Rails `blank?` terms.
+    #
     # @return [Regexp]
+    #
     # @see https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L136
     #
     ACTIVE_SUPPORT_CORE_EXT_BLANK_RE = /\A[[:space:]]*\z/
 
     ##
+    # Cache of regexp objects to match falsy string values in Rails `blank?` terms with non-default encodings.
+    #
     # @return [Hash]
+    #
     # @see https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L137
     #
     ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS = ::Hash.new do |h, enc|
@@ -38,11 +44,14 @@ module SemanticBoolean
     end
 
     ##
-    # Returns `false` when `object` is `false` or `nil`. Returns `true` for all the other cases. Just like Ruby does in the control expressions.
+    # Returns `false` when `object` is `false` or `nil`.
+    # Returns `true` for all the other cases.
+    # Just like Ruby does in the control expressions.
     #
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
+    # @note If performance is a concern, prefer to use `!!` directly.
     # @see https://docs.ruby-lang.org/en/3.4/syntax/control_expressions_rdoc.html
     #
     def to_ruby_bool(object)
@@ -56,16 +65,16 @@ module SemanticBoolean
     #
     alias_method :to_bool, :to_ruby_bool
 
-    ##
-    # Converts `object` to a boolean by the following logic:
-    # - Converts `object` to a string by the `#to_s` method and checks whether it is one of `["t", "T", "true", "True", "TRUE", "on", "On", "ON", "y", "Y", "yes", "Yes", "YES"]`.
-    # - If yes, returns `true`, otherwise it converts `object` to an integer by `Kernel.Integer` and checks whether it is greater than zero.
-    # - If yes, returns `true`, otherwise returns `false`.
-    #
-    # @param object [Object] Can be any type.
-    # @return [Boolean]
-    #
     if ::Gem::Version.create(::RUBY_VERSION) >= ::Gem::Version.create("2.6")
+      ##
+      # Converts `object` to a boolean by the following logic:
+      # - Converts `object` to a string by the `#to_s` method and checks whether it is one of `["t", "T", "true", "True", "TRUE", "on", "On", "ON", "y", "Y", "yes", "Yes", "YES"]`.
+      # - If yes, returns `true`, otherwise it converts `object` to an integer by `Kernel.Integer` and checks whether it is greater than zero.
+      # - If yes, returns `true`, otherwise returns `false`.
+      #
+      # @param object [Object] Can be any type.
+      # @return [Boolean]
+      #
       def to_env_bool(object)
         string = object.to_s
 
@@ -82,6 +91,15 @@ module SemanticBoolean
         false
       end
     else
+      ##
+      # Converts `object` to a boolean by the following logic:
+      # - Converts `object` to a string by the `#to_s` method and checks whether it is one of `["t", "T", "true", "True", "TRUE", "on", "On", "ON", "y", "Y", "yes", "Yes", "YES"]`.
+      # - If yes, returns `true`, otherwise it converts `object` to an integer by `Kernel.Integer` and checks whether it is greater than zero.
+      # - If yes, returns `true`, otherwise returns `false`.
+      #
+      # @param object [Object] Can be any type.
+      # @return [Boolean]
+      #
       # rubocop:disable Lint/SuppressedExceptionInNumberConversion
       def to_env_bool(object)
         string = object.to_s
@@ -107,12 +125,19 @@ module SemanticBoolean
     end
 
     ##
-    # Converts `object` to boolean using exactly the same logic as `object.blank?` does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
+    # Converts `object` to boolean using exactly the same logic as `blank?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
     #
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
+    # @note If performance is a concern, prefer to load Rails (or just `activesupport`) and use `blank?` directly.
+    # @see https://api.rubyonrails.org/classes/Object.html#method-i-blank-3F
+    # @see https://api.rubyonrails.org/classes/ActiveSupport/TimeWithZone.html#method-i-blank-3F
+    # @see https://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-blank-3F
+    #
     def blank?(object)
+      return object.__send__(:blank?) if object.respond_to?(:blank?)
+
       case object
       when NilClass
         true
@@ -145,10 +170,13 @@ module SemanticBoolean
     end
 
     ##
-    # Converts `object` to boolean using exactly the same logic as `object.present?` does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
+    # Converts `object` to boolean using exactly the same logic as `present?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
     #
     # @param object [Object] Can be any type.
     # @return [Boolean]
+    #
+    # @note If performance is a concern, prefer to load Rails (or just `activesupport`) and use `present?` directly.
+    # @see https://api.rubyonrails.org/classes/Object.html#method-i-present-3F
     #
     def present?(object)
       !blank?(object)
@@ -160,6 +188,8 @@ module SemanticBoolean
     # @param object [Object] Can be any type.
     # @return [Boolean, nil]
     #
+    # @note If performance is a concern, prefer to load Rails (or just `activemodel`) and use `ActiveModel::Type::Boolean.new.cast(object)` directly.
+    # @see https://api.rubyonrails.org/classes/ActiveModel/Type/Boolean.html
     # @see https://github.com/rails/rails/blob/v8.0.2/activemodel/lib/active_model/type/boolean.rb#L39
     #
     def to_active_model_boolean_type(object)
@@ -175,6 +205,14 @@ module SemanticBoolean
     # @param by [Symbol, String].
     # @return [Integer]
     #
+    # @example Call without the `:by` keyword.
+    #   SemanticBoolean.to_one_or_zero("")
+    #   # => 1
+    #
+    # @example Call with the `:by` keyword.
+    #   SemanticBoolean.to_one_or_zero("", by: :present?)
+    #   # => 0
+    #
     def to_one_or_zero(object, by: :to_ruby_bool)
       public_send(by, object) ? 1 : 0
     end
@@ -187,6 +225,14 @@ module SemanticBoolean
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
     # @return [String]
+    #
+    # @example Call without the `:by` keyword.
+    #   SemanticBoolean.to_y_or_n("n")
+    #   # => "y"
+    #
+    # @example Call with the `:by` keyword.
+    #   SemanticBoolean.to_y_or_n("n", by: :to_env_bool)
+    #   # => "n"
     #
     def to_y_or_n(object, by: :to_ruby_bool)
       public_send(by, object) ? "y" : "n"
@@ -201,6 +247,14 @@ module SemanticBoolean
     # @param by [Symbol, String].
     # @return [String]
     #
+    # @example Call without the `:by` keyword.
+    #   SemanticBoolean.to_yes_or_no([])
+    #   # => "yes"
+    #
+    # @example Call with the `:by` keyword.
+    #   SemanticBoolean.to_yes_or_no([], by: :present?)
+    #   # => "no"
+    #
     def to_yes_or_no(object, by: :to_ruby_bool)
       public_send(by, object) ? "yes" : "no"
     end
@@ -213,6 +267,14 @@ module SemanticBoolean
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
     # @return [String]
+    #
+    # @example Call without the `:by` keyword.
+    #   SemanticBoolean.to_on_or_off(false)
+    #   # => "off"
+    #
+    # @example Call with the `:by` keyword.
+    #   SemanticBoolean.to_yes_or_no(false, by: :blank?)
+    #   # => "on"
     #
     def to_on_or_off(object, by: :to_ruby_bool)
       public_send(by, object) ? "on" : "off"
