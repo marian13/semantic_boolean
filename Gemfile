@@ -9,4 +9,7 @@ gem "simplecov"
 gem "simplecov-lcov"
 
 gem "irb"
+
 gem "bigdecimal"
+gem "date"
+gem "time"
