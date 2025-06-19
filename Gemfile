@@ -13,3 +13,5 @@ gem "irb"
 gem "bigdecimal"
 gem "date"
 gem "time"
+
+gem "gem-release"

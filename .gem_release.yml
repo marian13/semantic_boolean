@@ -1,0 +1,7 @@
+quiet: false
+
+release:
+  color: true
+  host: https://rubygems.org
+  recurse: false
+  key: semantic_boolean
