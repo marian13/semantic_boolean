@@ -7,7 +7,7 @@ require "set"
 RSpec.describe SemanticBoolean do
   example_group "to_bool methods" do
     def normalize_message(message)
-      message.gsub("`", "'")
+      message.tr("`", "'")
     end
 
     def bulk_to_bool(object)
