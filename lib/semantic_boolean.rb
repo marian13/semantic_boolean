@@ -67,7 +67,7 @@ module SemanticBoolean
     #
     if ::Gem::Version.create(::RUBY_VERSION) >= ::Gem::Version.create("2.6")
       def to_env_bool(object)
-        string = ::Kernel.String(object)
+        string = object.to_s
 
         return false if string.empty?
 
@@ -78,6 +78,8 @@ module SemanticBoolean
         return false unless integer
 
         integer > 0
+      rescue
+        false
       end
     else
       # rubocop:disable Lint/SuppressedExceptionInNumberConversion
@@ -98,6 +100,8 @@ module SemanticBoolean
         return false unless integer
 
         integer > 0
+      rescue
+        false
       end
       # rubocop:enable Lint/SuppressedExceptionInNumberConversion
     end

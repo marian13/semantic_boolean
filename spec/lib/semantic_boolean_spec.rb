@@ -212,17 +212,21 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(Class.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Module.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
-
-    if Gem::Version.create(RUBY_VERSION) >= ::Gem::Version.create("2.5")
-      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [TypeError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
-    else
-      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
-    end
+    specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
 
     specify { expect(bulk_to_bool(Class)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Module)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Object)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(BasicObject)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+
+    ##
+    # NOTE: Used from Rails.
+    # - https://github.com/rails/rails/blob/v8.0.2/activesupport/test/core_ext/object/blank_test.rb#L27
+    #
+    Encoding.list.reject(&:dummy?).each do |encoding|
+      specify { expect(bulk_to_bool(" ".encode(encoding))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
+      specify { expect(bulk_to_bool("a".encode(encoding))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    end
   end
 
   describe "#to_one_or_zero" do
