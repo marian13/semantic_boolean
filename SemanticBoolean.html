@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: SemanticBoolean
+  
+    &mdash; Documentation by YARD 0.9.37
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "SemanticBoolean";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">SemanticBoolean</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: SemanticBoolean
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/semantic_boolean.rb<span class="defines">,<br />
+  lib/semantic_boolean/version.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>rubocop:disable Lint/BooleanSymbol</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="TO_ENV_BOOL_TRUE_VALUES-constant" class="">TO_ENV_BOOL_TRUE_VALUES =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Truthy values in ‘SemanticBoolean.to_env_bool` terms.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>T</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>true</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>True</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TRUE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>on</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>On</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ON</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>y</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Y</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yes</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Yes</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>YES</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES-constant" class="">TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Falsy values in ‘ActiveModel::Type::Boolean` terms.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://github.com/rails/rails/blob/v8.0.2/activemodel/lib/active_model/type/boolean.rb#L15" target="_parent" title="https://github.com/rails/rails/blob/v8.0.2/activemodel/lib/active_model/type/boolean.rb#L15">https://github.com/rails/rails/blob/v8.0.2/activemodel/lib/active_model/type/boolean.rb#L15</a></li>
+    
+  </ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='kw'>false</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:&quot;0&quot;</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:f</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>F</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:F</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>false</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:false</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>FALSE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:FALSE</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>off</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:off</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OFF</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:OFF</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_set'>to_set</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ACTIVE_SUPPORT_CORE_EXT_BLANK_RE-constant" class="">ACTIVE_SUPPORT_CORE_EXT_BLANK_RE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regexp to match falsy string values in Rails ‘blank?` terms.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Regexp</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L136" target="_parent" title="https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L136">https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L136</a></li>
+    
+  </ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[[:space:]]*\z</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS-constant" class="">ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Cache of regexp objects to match falsy string values in Rails ‘blank?` terms with non-default encodings.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L137" target="_parent" title="https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L137">https://github.com/rails/rails/blob/v8.0.2/activesupport/lib/active_support/core_ext/object/blank.rb#L137</a></li>
+    
+  </ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='op'>::</span><span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_enc'>enc</span><span class='op'>|</span>
+  <span class='id identifier rubyid_h'>h</span><span class='lbracket'>[</span><span class='id identifier rubyid_enc'>enc</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#ACTIVE_SUPPORT_CORE_EXT_BLANK_RE-constant" title="SemanticBoolean::ACTIVE_SUPPORT_CORE_EXT_BLANK_RE (constant)">ACTIVE_SUPPORT_CORE_EXT_BLANK_RE</a></span></span><span class='period'>.</span><span class='id identifier rubyid_source'>source</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='id identifier rubyid_enc'>enc</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ACTIVE_SUPPORT_CORE_EXT_BLANK_RE-constant" title="SemanticBoolean::ACTIVE_SUPPORT_CORE_EXT_BLANK_RE (constant)">ACTIVE_SUPPORT_CORE_EXT_BLANK_RE</a></span></span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span> <span class='op'>|</span> <span class='op'>::</span><span class='const'>Regexp</span><span class='op'>::</span><span class='const'>FIXEDENCODING</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre></dd>
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1.0.0</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#blank%3F-class_method" title="blank? (class method)">.<strong>blank?</strong>(object)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to boolean using exactly the same logic as `blank?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#present%3F-class_method" title="present? (class method)">.<strong>present?</strong>(object)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to boolean using exactly the same logic as `present?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_active_model_boolean_type-class_method" title="to_active_model_boolean_type (class method)">.<strong>to_active_model_boolean_type</strong>(object)  &#x21d2; Boolean<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to boolean (or `nil`) using exactly the same logic as `ActiveModel::Type::Boolean.new.cast(object)` does.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_on_or_off-class_method" title="to_on_or_off (class method)">.<strong>to_on_or_off</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to `“on”` or `“off”`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_one_or_zero-class_method" title="to_one_or_zero (class method)">.<strong>to_one_or_zero</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to `1` or `0`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_ruby_bool-class_method" title="to_ruby_bool (class method)">.<strong>to_ruby_bool</strong>(object)  &#x21d2; Boolean </a>
+    
+
+    
+      (also: to_bool)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns ‘false` when `object` is `false` or `nil`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_true_or_false-class_method" title="to_true_or_false (class method)">.<strong>to_true_or_false</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to `true` or `false`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_y_or_n-class_method" title="to_y_or_n (class method)">.<strong>to_y_or_n</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to `“y”` or `“n”`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_yes_or_no-class_method" title="to_yes_or_no (class method)">.<strong>to_yes_or_no</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to `“yes”` or `“no”`.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_env_bool-instance_method" title="#to_env_bool (instance method)">#<strong>to_env_bool</strong>(object)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts ‘object` to a boolean by the following logic: - Converts `object` to a string by the `#to_s` method and checks whether it is one of `[“t”, “T”, “true”, “True”, “TRUE”, “on”, “On”, “ON”, “y”, “Y”, “yes”, “Yes”, “YES”]`.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="blank?-class_method">
+  
+    .<strong>blank?</strong>(object)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>If performance is a concern, prefer to load Rails (or just ‘activesupport`) and use `blank?` directly.</p>
+</div>
+  </div>
+
+
+<p>Converts ‘object` to boolean using exactly the same logic as `blank?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://api.rubyonrails.org/classes/Object.html#method-i-blank-3F" target="_parent" title="https://api.rubyonrails.org/classes/Object.html#method-i-blank-3F">https://api.rubyonrails.org/classes/Object.html#method-i-blank-3F</a></li>
+    
+      <li><a href="https://api.rubyonrails.org/classes/ActiveSupport/TimeWithZone.html#method-i-blank-3F" target="_parent" title="https://api.rubyonrails.org/classes/ActiveSupport/TimeWithZone.html#method-i-blank-3F">https://api.rubyonrails.org/classes/ActiveSupport/TimeWithZone.html#method-i-blank-3F</a></li>
+    
+      <li><a href="https://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-blank-3F" target="_parent" title="https://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-blank-3F">https://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-blank-3F</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_blank?'>blank?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='symbol'>:blank?</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:blank?</span><span class='rparen'>)</span>
+
+  <span class='kw'>case</span> <span class='id identifier rubyid_object'>object</span>
+  <span class='kw'>when</span> <span class='const'>NilClass</span>
+    <span class='kw'>true</span>
+  <span class='kw'>when</span> <span class='const'>FalseClass</span>
+    <span class='kw'>true</span>
+  <span class='kw'>when</span> <span class='const'>TrueClass</span>
+    <span class='kw'>false</span>
+  <span class='kw'>when</span> <span class='const'>Array</span>
+    <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='kw'>when</span> <span class='const'>Hash</span>
+    <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='kw'>when</span> <span class='const'>Symbol</span>
+    <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='kw'>when</span> <span class='const'>String</span>
+    <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span>
+      <span class='kw'>begin</span>
+        <span class='const'><span class='object_link'><a href="#ACTIVE_SUPPORT_CORE_EXT_BLANK_RE-constant" title="SemanticBoolean::ACTIVE_SUPPORT_CORE_EXT_BLANK_RE (constant)">ACTIVE_SUPPORT_CORE_EXT_BLANK_RE</a></span></span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+      <span class='kw'>rescue</span> <span class='op'>::</span><span class='const'>Encoding</span><span class='op'>::</span><span class='const'>CompatibilityError</span>
+        <span class='const'><span class='object_link'><a href="#ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS-constant" title="SemanticBoolean::ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS (constant)">ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_encoding'>encoding</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+  <span class='kw'>when</span> <span class='const'>Numeric</span>
+    <span class='kw'>false</span>
+  <span class='kw'>when</span> <span class='const'>Time</span>
+    <span class='kw'>false</span>
+  <span class='kw'>when</span> <span class='const'>Object</span>
+    <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:empty?</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>:</span> <span class='kw'>false</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='symbol'>:blank?</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="present?-class_method">
+  
+    .<strong>present?</strong>(object)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>If performance is a concern, prefer to load Rails (or just ‘activesupport`) and use `present?` directly.</p>
+</div>
+  </div>
+
+
+<p>Converts ‘object` to boolean using exactly the same logic as `present?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://api.rubyonrails.org/classes/Object.html#method-i-present-3F" target="_parent" title="https://api.rubyonrails.org/classes/Object.html#method-i-present-3F">https://api.rubyonrails.org/classes/Object.html#method-i-present-3F</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_present?'>present?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+  <span class='op'>!</span><span class='id identifier rubyid_blank?'>blank?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_active_model_boolean_type-class_method">
+  
+    .<strong>to_active_model_boolean_type</strong>(object)  &#x21d2; <tt>Boolean</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>If performance is a concern, prefer to load Rails (or just ‘activemodel`) and use `ActiveModel::Type::Boolean.new.cast(object)` directly.</p>
+</div>
+  </div>
+
+
+<p>Converts ‘object` to boolean (or `nil`) using exactly the same logic as `ActiveModel::Type::Boolean.new.cast(object)` does.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://api.rubyonrails.org/classes/ActiveModel/Type/Boolean.html" target="_parent" title="https://api.rubyonrails.org/classes/ActiveModel/Type/Boolean.html">https://api.rubyonrails.org/classes/ActiveModel/Type/Boolean.html</a></li>
+    
+      <li><a href="https://github.com/rails/rails/blob/v8.0.2/activemodel/lib/active_model/type/boolean.rb#L39" target="_parent" title="https://github.com/rails/rails/blob/v8.0.2/activemodel/lib/active_model/type/boolean.rb#L39">https://github.com/rails/rails/blob/v8.0.2/activemodel/lib/active_model/type/boolean.rb#L39</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+195
+196
+197</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 195</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_active_model_boolean_type'>to_active_model_boolean_type</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="#TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES-constant" title="SemanticBoolean::TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES (constant)">TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_on_or_off-class_method">
+  
+    .<strong>to_on_or_off</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts ‘object` to `“on”` or `“off”`. Uses `to_ruby_bool` method under the hood. Accepts optional `:by` keyword to rely on a different method. Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call without the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_on_or_off'>to_on_or_off</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;off&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_yes_or_no'><span class='object_link'><a href="#to_yes_or_no-class_method" title="SemanticBoolean.to_yes_or_no (method)">to_yes_or_no</a></span></span><span class='lparen'>(</span><span class='kw'>false</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:blank?</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;on&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:unknown` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_on_or_off'>to_on_or_off</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unavailable</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;unavailable&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>by</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:to_ruby_bool</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>unknown</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+309
+310
+311
+312
+313</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 309</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_on_or_off'>to_on_or_off</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='id identifier rubyid_by'>by</span><span class='comma'>,</span> <span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>on</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>off</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_one_or_zero-class_method">
+  
+    .<strong>to_one_or_zero</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts ‘object` to `1` or `0`. Uses `to_ruby_bool` method under the hood. Accepts optional `:by` keyword to rely on a different method. Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call without the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_one_or_zero'>to_one_or_zero</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; 1</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_one_or_zero'>to_one_or_zero</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:present?</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; 0</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:unknown` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_one_or_zero'>to_one_or_zero</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='int'>127</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; 127</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>by</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:to_ruby_bool</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>unknown</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+222
+223
+224
+225
+226</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 222</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_one_or_zero'>to_one_or_zero</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='id identifier rubyid_by'>by</span><span class='comma'>,</span> <span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_ruby_bool-class_method">
+  
+    .<strong>to_ruby_bool</strong>(object)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='to_bool-class_method'>to_bool</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>If performance is a concern, prefer to use ‘!!` directly.</p>
+</div>
+  </div>
+
+
+<p>Returns ‘false` when `object` is `false` or `nil`. Returns `true` for all the other cases. Just like Ruby does in the control expressions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://docs.ruby-lang.org/en/3.4/syntax/control_expressions_rdoc.html" target="_parent" title="https://docs.ruby-lang.org/en/3.4/syntax/control_expressions_rdoc.html">https://docs.ruby-lang.org/en/3.4/syntax/control_expressions_rdoc.html</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_ruby_bool'>to_ruby_bool</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+  <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_object'>object</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_true_or_false-class_method">
+  
+    .<strong>to_true_or_false</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts ‘object` to `true` or `false`. Uses `to_ruby_bool` method under the hood. Accepts optional `:by` keyword to rely on a different method. Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call without the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_on_or_off'><span class='object_link'><a href="#to_on_or_off-class_method" title="SemanticBoolean.to_on_or_off (method)">to_on_or_off</a></span></span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;off&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_yes_or_no'><span class='object_link'><a href="#to_yes_or_no-class_method" title="SemanticBoolean.to_yes_or_no (method)">to_yes_or_no</a></span></span><span class='lparen'>(</span><span class='kw'>false</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:blank?</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;on&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:unknown` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_on_or_off'><span class='object_link'><a href="#to_on_or_off-class_method" title="SemanticBoolean.to_on_or_off (method)">to_on_or_off</a></span></span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unavailable</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;unavailable&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>by</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:to_ruby_bool</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>unknown</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+338
+339
+340
+341
+342</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 338</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_true_or_false'>to_true_or_false</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='id identifier rubyid_by'>by</span><span class='comma'>,</span> <span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_y_or_n-class_method">
+  
+    .<strong>to_y_or_n</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts ‘object` to `“y”` or `“n”`. Uses `to_ruby_bool` method under the hood. Accepts optional `:by` keyword to rely on a different method. Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call without the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_y_or_n'>to_y_or_n</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;y&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_y_or_n'>to_y_or_n</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_env_bool</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;n&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:unknown` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_y_or_n'>to_y_or_n</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>by</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:to_ruby_bool</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>unknown</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+251
+252
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 251</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_y_or_n'>to_y_or_n</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='id identifier rubyid_by'>by</span><span class='comma'>,</span> <span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>y</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>n</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_yes_or_no-class_method">
+  
+    .<strong>to_yes_or_no</strong>(object, by: :to_ruby_bool, unknown: false)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts ‘object` to `“yes”` or `“no”`. Uses `to_ruby_bool` method under the hood. Accepts optional `:by` keyword to rely on a different method. Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call without the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_yes_or_no'>to_yes_or_no</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;yes&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:by` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_yes_or_no'>to_yes_or_no</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:present?</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;no&quot;</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Call with the ‘:unknown` keyword.</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SemanticBoolean (module)">SemanticBoolean</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_yes_or_no'>to_yes_or_no</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unknown</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;unknown&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>by</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:to_ruby_bool</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>unknown</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+280
+281
+282
+283
+284</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 280</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_yes_or_no'>to_yes_or_no</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='id identifier rubyid_by'>by</span><span class='comma'>,</span> <span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yes</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>no</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="to_env_bool-instance_method">
+  
+    #<strong>to_env_bool</strong>(object)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts ‘object` to a boolean by the following logic:</p>
+<ul><li>
+<p>Converts ‘object` to a string by the `#to_s` method and checks whether it is one of `[“t”, “T”, “true”, “True”, “TRUE”, “on”, “On”, “ON”, “y”, “Y”, “yes”, “Yes”, “YES”]`.</p>
+</li><li>
+<p>If yes, returns ‘true`, otherwise it converts `object` to an integer by `Kernel.Integer` and checks whether it is greater than zero.</p>
+</li><li>
+<p>If yes, returns ‘true`, otherwise returns `false`.</p>
+</li></ul>
+
+<p>rubocop:disable Lint/SuppressedExceptionInNumberConversion</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Can be any type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_env_bool'>to_env_bool</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_string'>string</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="#TO_ENV_BOOL_TRUE_VALUES-constant" title="SemanticBoolean::TO_ENV_BOOL_TRUE_VALUES (constant)">TO_ENV_BOOL_TRUE_VALUES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_integer'>integer</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='const'>Integer</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='label'>exception:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_integer'>integer</span>
+
+  <span class='id identifier rubyid_integer'>integer</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+<span class='kw'>rescue</span> <span class='op'>::</span><span class='const'>Encoding</span><span class='op'>::</span><span class='const'>CompatibilityError</span>
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Jun 19 18:52:01 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.4).
+</div>
+
+    </div>
+  </body>
+</html>
