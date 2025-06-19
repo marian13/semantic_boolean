@@ -1,3 +1,5 @@
+--markup markdown
+--markup-provider commonmarker
 --output-dir docs/api
 --no-private
 'lib/**/*.rb'

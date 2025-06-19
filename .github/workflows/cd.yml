@@ -18,7 +18,7 @@ jobs:
           bundler-cache: true
       - name: Generate docs
         working-directory: ./
-        run: gem install --no-document yard && yardoc
+        run: gem install --no-document commonmarker -v 0.23.10 && gem install --no-document yard && yardoc
       - name: Deploy docs to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
