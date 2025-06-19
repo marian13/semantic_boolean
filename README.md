@@ -119,13 +119,13 @@ However, if you have a code snippet where performance is a requirement, prefer u
 
 ## Credits
 
-- To the CLI enthusiasts, who allow me to pass words, numbers, and shortcuts to the same shell commands options depending on my mood.
+To the CLI enthusiasts, who allow me to pass words, numbers, and shortcuts to the same shell commands options depending on my mood.
 
-  ```bash
-  DEBUG=1
-  SKIP_AUTH=no
-  --verbose=y
-  --tracking=off
-  ```
+```bash
+DEBUG=1
+SKIP_AUTH=no
+--verbose=y
+--tracking=off
+```
 
-- To the Rails team. They made me a Ruby dev who can't live without Rails goodies in the non-Rails projects.
+To the Rails team. They made me a Ruby dev who can't live without Rails goodies in the non-Rails projects.
