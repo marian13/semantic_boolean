@@ -214,9 +214,9 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
     if RUBY_ENGINE.match?("jruby")
-      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
-    else
       specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError], active_model_boolean_type: true, blank: [NoMethodError], present: [NoMethodError]}) }
+    else
+      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
     end
 
     specify { expect(bulk_to_bool(Class)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
