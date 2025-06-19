@@ -5,6 +5,26 @@ on:
     branches:
       - main
 
+jobs:
+  deploy_api_docs:
+    runs-on: ubuntu-24.04
+    name: Deploy API Docs
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+      - name: Generate docs
+        working-directory: ./
+        run: gem install --no-document yardoc && yardoc
+      - name: Deploy docs to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/api
+
   create_github_release:
     runs-on: ubuntu-24.04
     name: Create GitHub Release PR

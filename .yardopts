@@ -1,0 +1,5 @@
+--output-dir docs/api
+--no-private
+'lib/**/*.rb'
+-
+README.md
