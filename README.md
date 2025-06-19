@@ -7,27 +7,52 @@
 
 Multiple ways to convert Ruby objects into booleans bundled in a single gem.
 
-## Usage
+## TL;DR
 
 ```ruby
 require "semantic_boolean"
 
+##
+# Converts an object to the boolean using `!!`.
+#
 SemanticBoolean.to_ruby_bool(any_object)
 # => true or false
 
-SemanticBoolean.to_bool(any_object) # Alias for `to_ruby_bool`.
+##
+# Alias for `SemanticBoolean.to_ruby_bool`.
+#
+SemanticBoolean.to_bool(any_object)
 # => true or false
 
+##
+# Converts `true`, `"t"`, `"T"`, `"true"`, `"True"`, `"TRUE"`, `"on"`, `"On"`, `"ON"`, `"y"`,
+# `"Y"`, `"yes"`, `"Yes"`, `"YES"`, positive numbers (like `1`, `1.0`, `BibDecimal("1")`) and strings with positive numbers (like `"1"`, `"1.0"`) to `true`.
+# Returns `false` for anything else.
+#
+# Useful for parsing values read from `ENV`, CLI options, etc.
+#
 SemanticBoolean.to_env_bool(any_object)
 # => true or false
 
-SemanticBoolean.to_active_model_boolean_type(any_object) # https://api.rubyonrails.org/classes/ActiveModel/Type/Boolean.html
+##
+# Converts to a boolean just like `ActiveModel::Type::Boolean.new.cast(object)` does.
+# - https://api.rubyonrails.org/classes/ActiveModel/Type/Boolean.html
+#
+SemanticBoolean.to_active_model_boolean_type(any_object)
 # => true, false, or nil
 
-SemanticBoolean.blank?(any_object) # https://api.rubyonrails.org/classes/Object.html#method-i-blank-3F
+##
+# Converts to a boolean just like Rails `blank?` does.
+# - https://api.rubyonrails.org/classes/Object.html#method-i-blank-3F
+#
+SemanticBoolean.blank?(any_object)
 # => true or false
 
-SemanticBoolean.present?(any_object) # https://api.rubyonrails.org/classes/Object.html#method-i-present-3F
+##
+# Converts to a boolean just like Rails `present?` does.
+# - https://api.rubyonrails.org/classes/Object.html#method-i-present-3F
+#
+SemanticBoolean.present?(any_object)
 # => true or false
 
 SemanticBoolean.to_one_or_zero(any_object)
@@ -43,8 +68,9 @@ SemanticBoolean.to_on_or_off(any_object)
 # => "on" or "off"
 
 ##
-# All `to_one_or_zero`, `to_y_or_n`, `to_yes_or_no`, and `to_on_or_off` methods accept `:by` keyword.
-# `:to_ruby_bool` is the default value. `:to_env_bool`, `:to_active_model_boolean_type`, `:blank?` and `:present?` are also available.
+# All the `to_one_or_zero`, `to_y_or_n`, `to_yes_or_no`, and `to_on_or_off` methods
+# accept the `:by` keyword. `:to_ruby_bool` is the default value. `:to_bool`, `:to_env_bool`,
+# `:to_active_model_boolean_type`, `:blank?` and `:present?` are also available.
 #
 SemanticBoolean.to_one_or_zero(any_object)
 SemanticBoolean.to_y_or_n(any_object, by: :to_ruby_bool)
@@ -54,3 +80,46 @@ SemanticBoolean.to_yes_or_no(any_object, by: :to_active_model_boolean_type)
 SemanticBoolean.to_on_or_off(any_object, by: :blank?)
 SemanticBoolean.to_on_or_off(any_object, by: :present?)
 ```
+
+## Installation
+
+### Bundler
+
+Add the following line to your Gemfile:
+
+```ruby
+gem "semantic_boolean"
+```
+
+And then run:
+
+```bash
+bundle install
+```
+
+### Without Bundler
+
+Execute the command below:
+
+```bash
+gem install semantic_boolean
+```
+
+## Performance
+
+This gem is especially useful for one-time Ruby scripts, CLI applications, configuration parsers that are reading values from `ENV`, YAML files, etc.
+
+However, if you have a code snippet where performance is a requirement, prefer using the original implementations (if you need [blank?](https://github.com/rails/rails/blob/main/activesupport/lib/active_support/core_ext/object/blank.rb), [present?](https://github.com/rails/rails/blob/main/activesupport/lib/active_support/core_ext/object/blank.rb), or [to_active_model_boolean_type](https://github.com/rails/rails/blob/main/activemodel/lib/active_model/type/boolean.rb)) or dive into the [Semantic Boolean source](https://github.com/marian13/semantic_boolean/blob/main/lib/semantic_boolean.rb) to extract only the parts that your application can leverage the most effectively.
+
+## Credits
+
+- To the CLI enthusiasts, who allow me to pass words, numbers, and shortcuts to the same shell commands options depending on my mood.
+
+  ```bash
+  DEBUG=1
+  SKIP_AUTH=no
+  --verbose=y
+  --tracking=off
+  ```
+
+- To the Rails team. They made me a Ruby dev who can't live without Rails goodies in the non-Rails projects.
