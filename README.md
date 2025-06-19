@@ -26,7 +26,8 @@ SemanticBoolean.to_bool(any_object)
 
 ##
 # Converts `true`, `"t"`, `"T"`, `"true"`, `"True"`, `"TRUE"`, `"on"`, `"On"`, `"ON"`, `"y"`,
-# `"Y"`, `"yes"`, `"Yes"`, `"YES"`, positive numbers (like `1`, `1.0`, `BibDecimal("1")`) and strings with positive numbers (like `"1"`, `"1.0"`) to `true`.
+# `"Y"`, `"yes"`, `"Yes"`, `"YES"`, positive numbers (like `1`, `1.0`, `BibDecimal("1")`)
+# and strings with positive numbers (like `"1"`, `"1.0"`) to `true`.
 # Returns `false` for anything else.
 #
 # Useful for parsing values read from `ENV`, CLI options, etc.
@@ -55,6 +56,9 @@ SemanticBoolean.blank?(any_object)
 SemanticBoolean.present?(any_object)
 # => true or false
 
+##
+# The following methods do not return boolean values, but they are often utilized in a boolean context.
+##
 SemanticBoolean.to_one_or_zero(any_object)
 # => 1 or 0
 
@@ -68,9 +72,9 @@ SemanticBoolean.to_on_or_off(any_object)
 # => "on" or "off"
 
 ##
-# All the `to_one_or_zero`, `to_y_or_n`, `to_yes_or_no`, and `to_on_or_off` methods
-# accept the `:by` keyword. `:to_ruby_bool` is the default value. `:to_bool`, `:to_env_bool`,
-# `:to_active_model_boolean_type`, `:blank?` and `:present?` are also available.
+# All the `to_one_or_zero`, `to_y_or_n`, `to_yes_or_no`, and `to_on_or_off` methods accept the `:by` keyword.
+# `:to_ruby_bool` is the default value.
+# `:to_bool`, `:to_env_bool`, `:to_active_model_boolean_type`, `:blank?` and `:present?` are also available.
 #
 SemanticBoolean.to_one_or_zero(any_object)
 SemanticBoolean.to_y_or_n(any_object, by: :to_ruby_bool)
