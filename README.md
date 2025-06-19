@@ -85,6 +85,8 @@ SemanticBoolean.to_on_or_off(any_object, by: :blank?)
 SemanticBoolean.to_on_or_off(any_object, by: :present?)
 ```
 
+Check the [specs](https://github.com/marian13/semantic_boolean/blob/main/spec/lib/semantic_boolean_spec.rb) to see a comprehensive comparison of all Semantic Boolean methods.
+
 ## Installation
 
 ### Bundler

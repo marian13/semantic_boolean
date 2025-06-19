@@ -261,6 +261,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_one_or_zero(false, by: :to_ruby_bool)).to eq(0) }
       specify { expect(SemanticBoolean.to_one_or_zero(false, by: :to_env_bool)).to eq(0) }
       specify { expect(SemanticBoolean.to_one_or_zero(false, by: :to_active_model_boolean_type)).to eq(0) }
+      specify { expect(SemanticBoolean.to_one_or_zero(false, by: :blank?)).to eq(1) }
+      specify { expect(SemanticBoolean.to_one_or_zero(false, by: :present?)).to eq(0) }
       specify { expect { SemanticBoolean.to_one_or_zero(false, by: :not_supported) }.to raise_error(NoMethodError) }
     end
 
@@ -269,6 +271,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_one_or_zero(true, by: :to_ruby_bool)).to eq(1) }
       specify { expect(SemanticBoolean.to_one_or_zero(true, by: :to_env_bool)).to eq(1) }
       specify { expect(SemanticBoolean.to_one_or_zero(true, by: :to_active_model_boolean_type)).to eq(1) }
+      specify { expect(SemanticBoolean.to_one_or_zero(true, by: :blank?)).to eq(0) }
+      specify { expect(SemanticBoolean.to_one_or_zero(true, by: :present?)).to eq(1) }
       specify { expect { SemanticBoolean.to_one_or_zero(true, by: :not_supported) }.to raise_error(NoMethodError) }
     end
   end
@@ -279,6 +283,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_y_or_n(false, by: :to_ruby_bool)).to eq("n") }
       specify { expect(SemanticBoolean.to_y_or_n(false, by: :to_env_bool)).to eq("n") }
       specify { expect(SemanticBoolean.to_y_or_n(false, by: :to_active_model_boolean_type)).to eq("n") }
+      specify { expect(SemanticBoolean.to_y_or_n(false, by: :blank?)).to eq("y") }
+      specify { expect(SemanticBoolean.to_y_or_n(false, by: :present?)).to eq("n") }
       specify { expect { SemanticBoolean.to_y_or_n(false, by: :not_supported) }.to raise_error(NoMethodError) }
     end
 
@@ -287,6 +293,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_y_or_n(true, by: :to_ruby_bool)).to eq("y") }
       specify { expect(SemanticBoolean.to_y_or_n(true, by: :to_env_bool)).to eq("y") }
       specify { expect(SemanticBoolean.to_y_or_n(true, by: :to_active_model_boolean_type)).to eq("y") }
+      specify { expect(SemanticBoolean.to_y_or_n(true, by: :blank?)).to eq("n") }
+      specify { expect(SemanticBoolean.to_y_or_n(true, by: :present?)).to eq("y") }
       specify { expect { SemanticBoolean.to_y_or_n(true, by: :not_supported) }.to raise_error(NoMethodError) }
     end
   end
@@ -297,6 +305,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_yes_or_no(false, by: :to_ruby_bool)).to eq("no") }
       specify { expect(SemanticBoolean.to_yes_or_no(false, by: :to_env_bool)).to eq("no") }
       specify { expect(SemanticBoolean.to_yes_or_no(false, by: :to_active_model_boolean_type)).to eq("no") }
+      specify { expect(SemanticBoolean.to_yes_or_no(false, by: :blank?)).to eq("yes") }
+      specify { expect(SemanticBoolean.to_yes_or_no(false, by: :present?)).to eq("no") }
       specify { expect { SemanticBoolean.to_yes_or_no(false, by: :not_supported) }.to raise_error(NoMethodError) }
     end
 
@@ -305,6 +315,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_yes_or_no(true, by: :to_ruby_bool)).to eq("yes") }
       specify { expect(SemanticBoolean.to_yes_or_no(true, by: :to_env_bool)).to eq("yes") }
       specify { expect(SemanticBoolean.to_yes_or_no(true, by: :to_active_model_boolean_type)).to eq("yes") }
+      specify { expect(SemanticBoolean.to_yes_or_no(true, by: :blank?)).to eq("no") }
+      specify { expect(SemanticBoolean.to_yes_or_no(true, by: :present?)).to eq("yes") }
       specify { expect { SemanticBoolean.to_yes_or_no(true, by: :not_supported) }.to raise_error(NoMethodError) }
     end
   end
@@ -315,6 +327,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_on_or_off(false, by: :to_ruby_bool)).to eq("off") }
       specify { expect(SemanticBoolean.to_on_or_off(false, by: :to_env_bool)).to eq("off") }
       specify { expect(SemanticBoolean.to_on_or_off(false, by: :to_active_model_boolean_type)).to eq("off") }
+      specify { expect(SemanticBoolean.to_on_or_off(false, by: :blank?)).to eq("on") }
+      specify { expect(SemanticBoolean.to_on_or_off(false, by: :present?)).to eq("off") }
       specify { expect { SemanticBoolean.to_on_or_off(false, by: :not_supported) }.to raise_error(NoMethodError) }
     end
 
@@ -323,6 +337,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_on_or_off(true, by: :to_ruby_bool)).to eq("on") }
       specify { expect(SemanticBoolean.to_on_or_off(true, by: :to_env_bool)).to eq("on") }
       specify { expect(SemanticBoolean.to_on_or_off(true, by: :to_active_model_boolean_type)).to eq("on") }
+      specify { expect(SemanticBoolean.to_on_or_off(true, by: :blank?)).to eq("off") }
+      specify { expect(SemanticBoolean.to_on_or_off(true, by: :present?)).to eq("on") }
       specify { expect { SemanticBoolean.to_on_or_off(true, by: :not_supported) }.to raise_error(NoMethodError) }
     end
   end
