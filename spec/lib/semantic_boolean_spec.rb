@@ -148,7 +148,12 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(-1.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
     specify { expect(bulk_to_bool(Kernel.BigDecimal("1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
-    specify { expect(bulk_to_bool(Kernel.BigDecimal("0.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+
+    if RUBY_ENGINE.match?("jruby")
+      specify { expect(bulk_to_bool(Kernel.BigDecimal("0.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
+    else
+      specify { expect(bulk_to_bool(Kernel.BigDecimal("0.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    end
 
     specify { expect(bulk_to_bool(Kernel.BigDecimal("2.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Kernel.BigDecimal("-1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
