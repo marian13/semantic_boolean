@@ -78,7 +78,7 @@ module SemanticBoolean
         return false unless integer
 
         integer > 0
-      rescue
+      rescue ::Encoding::CompatibilityError
         false
       end
     else
@@ -100,7 +100,7 @@ module SemanticBoolean
         return false unless integer
 
         integer > 0
-      rescue
+      rescue ::Encoding::CompatibilityError
         false
       end
       # rubocop:enable Lint/SuppressedExceptionInNumberConversion
