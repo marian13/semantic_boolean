@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "bigdecimal"
+require "set"
 
 # rubocop:disable Lint/BooleanSymbol
 RSpec.describe SemanticBoolean do
@@ -165,7 +166,14 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(-1r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
     specify { expect(bulk_to_bool([])).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
+    specify { expect(bulk_to_bool([:foo])).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+
     specify { expect(bulk_to_bool({})).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
+    specify { expect(bulk_to_bool({foo: :bar})).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+
+    specify { expect(bulk_to_bool(Set[])).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
+    specify { expect(bulk_to_bool(Set[:foo])).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+
     specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Class.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
   end
