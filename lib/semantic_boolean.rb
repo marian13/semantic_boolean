@@ -199,7 +199,8 @@ module SemanticBoolean
     ##
     # Converts `object` to `1` or `0`.
     # Uses `to_ruby_bool` method under the hood.
-    # Accepts optional `by` keyword to rely on a different method.
+    # Accepts optional `:by` keyword to rely on a different method.
+    # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
@@ -213,14 +214,21 @@ module SemanticBoolean
     #   SemanticBoolean.to_one_or_zero("", by: :present?)
     #   # => 0
     #
-    def to_one_or_zero(object, by: :to_ruby_bool)
+    # @example Call with the `:unknown` keyword.
+    #   SemanticBoolean.to_one_or_zero(nil, unknown: 127)
+    #   # => 127
+    #
+    def to_one_or_zero(object, by: :to_ruby_bool, unknown: false)
+      return unknown if object.nil?
+
       public_send(by, object) ? 1 : 0
     end
 
     ##
     # Converts `object` to `"y"` or `"n"`.
     # Uses `to_ruby_bool` method under the hood.
-    # Accepts optional `by` keyword to rely on a different method.
+    # Accepts optional `:by` keyword to rely on a different method.
+    # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
@@ -234,14 +242,21 @@ module SemanticBoolean
     #   SemanticBoolean.to_y_or_n("n", by: :to_env_bool)
     #   # => "n"
     #
-    def to_y_or_n(object, by: :to_ruby_bool)
+    # @example Call with the `:unknown` keyword.
+    #   SemanticBoolean.to_y_or_n(nil, unknown: "")
+    #   # => ""
+    #
+    def to_y_or_n(object, by: :to_ruby_bool, unknown: false)
+      return unknown if object.nil?
+
       public_send(by, object) ? "y" : "n"
     end
 
     ##
     # Converts `object` to `"yes"` or `"no"`.
     # Uses `to_ruby_bool` method under the hood.
-    # Accepts optional `by` keyword to rely on a different method.
+    # Accepts optional `:by` keyword to rely on a different method.
+    # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
@@ -255,14 +270,21 @@ module SemanticBoolean
     #   SemanticBoolean.to_yes_or_no([], by: :present?)
     #   # => "no"
     #
-    def to_yes_or_no(object, by: :to_ruby_bool)
+    # @example Call with the `:unknown` keyword.
+    #   SemanticBoolean.to_yes_or_no(nil, unknown: "unknown")
+    #   # => "unknown"
+    #
+    def to_yes_or_no(object, by: :to_ruby_bool, unknown: false)
+      return unknown if object.nil?
+
       public_send(by, object) ? "yes" : "no"
     end
 
     ##
     # Converts `object` to `"on"` or `"off"`.
     # Uses `to_ruby_bool` method under the hood.
-    # Accepts optional `by` keyword to rely on a different method.
+    # Accepts optional `:by` keyword to rely on a different method.
+    # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
@@ -276,7 +298,13 @@ module SemanticBoolean
     #   SemanticBoolean.to_yes_or_no(false, by: :blank?)
     #   # => "on"
     #
-    def to_on_or_off(object, by: :to_ruby_bool)
+    # @example Call with the `:unknown` keyword.
+    #   SemanticBoolean.to_on_or_off(nil, unknown: "unavailable")
+    #   # => "unavailable"
+    #
+    def to_on_or_off(object, by: :to_ruby_bool, unknown: false)
+      return unknown if object.nil?
+
       public_send(by, object) ? "on" : "off"
     end
   end

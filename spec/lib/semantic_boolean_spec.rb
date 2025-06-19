@@ -264,6 +264,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_one_or_zero(false, by: :blank?)).to eq(1) }
       specify { expect(SemanticBoolean.to_one_or_zero(false, by: :present?)).to eq(0) }
       specify { expect { SemanticBoolean.to_one_or_zero(false, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_one_or_zero(false, unknown: "default")).to eq(0) }
+      specify { expect(SemanticBoolean.to_one_or_zero(nil, unknown: "default")).to eq("default") }
     end
 
     context "when `object` is truthy" do
@@ -274,6 +276,7 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_one_or_zero(true, by: :blank?)).to eq(0) }
       specify { expect(SemanticBoolean.to_one_or_zero(true, by: :present?)).to eq(1) }
       specify { expect { SemanticBoolean.to_one_or_zero(true, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_one_or_zero(true, unknown: "default")).to eq(1) }
     end
   end
 
@@ -286,6 +289,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_y_or_n(false, by: :blank?)).to eq("y") }
       specify { expect(SemanticBoolean.to_y_or_n(false, by: :present?)).to eq("n") }
       specify { expect { SemanticBoolean.to_y_or_n(false, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_y_or_n(false, unknown: "default")).to eq("n") }
+      specify { expect(SemanticBoolean.to_y_or_n(nil, unknown: "default")).to eq("default") }
     end
 
     context "when `object` is truthy" do
@@ -296,6 +301,7 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_y_or_n(true, by: :blank?)).to eq("n") }
       specify { expect(SemanticBoolean.to_y_or_n(true, by: :present?)).to eq("y") }
       specify { expect { SemanticBoolean.to_y_or_n(true, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_y_or_n(true, unknown: "default")).to eq("y") }
     end
   end
 
@@ -308,6 +314,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_yes_or_no(false, by: :blank?)).to eq("yes") }
       specify { expect(SemanticBoolean.to_yes_or_no(false, by: :present?)).to eq("no") }
       specify { expect { SemanticBoolean.to_yes_or_no(false, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_yes_or_no(false, unknown: "default")).to eq("no") }
+      specify { expect(SemanticBoolean.to_yes_or_no(nil, unknown: "default")).to eq("default") }
     end
 
     context "when `object` is truthy" do
@@ -318,6 +326,7 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_yes_or_no(true, by: :blank?)).to eq("no") }
       specify { expect(SemanticBoolean.to_yes_or_no(true, by: :present?)).to eq("yes") }
       specify { expect { SemanticBoolean.to_yes_or_no(true, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_yes_or_no(true, unknown: "default")).to eq("yes") }
     end
   end
 
@@ -330,6 +339,8 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_on_or_off(false, by: :blank?)).to eq("on") }
       specify { expect(SemanticBoolean.to_on_or_off(false, by: :present?)).to eq("off") }
       specify { expect { SemanticBoolean.to_on_or_off(false, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_on_or_off(false, unknown: "default")).to eq("off") }
+      specify { expect(SemanticBoolean.to_on_or_off(nil, unknown: "default")).to eq("default") }
     end
 
     context "when `object` is truthy" do
@@ -340,6 +351,7 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_on_or_off(true, by: :blank?)).to eq("off") }
       specify { expect(SemanticBoolean.to_on_or_off(true, by: :present?)).to eq("on") }
       specify { expect { SemanticBoolean.to_on_or_off(true, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_on_or_off(true, unknown: "default")).to eq("on") }
     end
   end
 end
