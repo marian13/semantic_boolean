@@ -3,6 +3,8 @@
 /_yardoc/
 /coverage/*
 !/coverage/.gitkeep
+/docs/*
+!/docs/.gitkeep
 /doc/
 /pkg/
 /spec/reports/
