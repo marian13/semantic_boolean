@@ -354,5 +354,30 @@ RSpec.describe SemanticBoolean do
       specify { expect(SemanticBoolean.to_on_or_off(true, unknown: "default")).to eq("on") }
     end
   end
+
+  describe "#to_true_or_false" do
+    context "when `object` is falsy" do
+      specify { expect(SemanticBoolean.to_true_or_false(false)).to eq(false) }
+      specify { expect(SemanticBoolean.to_true_or_false(false, by: :to_ruby_bool)).to eq(false) }
+      specify { expect(SemanticBoolean.to_true_or_false(false, by: :to_env_bool)).to eq(false) }
+      specify { expect(SemanticBoolean.to_true_or_false(false, by: :to_active_model_boolean_type)).to eq(false) }
+      specify { expect(SemanticBoolean.to_true_or_false(false, by: :blank?)).to eq(true) }
+      specify { expect(SemanticBoolean.to_true_or_false(false, by: :present?)).to eq(false) }
+      specify { expect { SemanticBoolean.to_true_or_false(false, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_true_or_false(false, unknown: "default")).to eq(false) }
+      specify { expect(SemanticBoolean.to_true_or_false(nil, unknown: "default")).to eq("default") }
+    end
+
+    context "when `object` is truthy" do
+      specify { expect(SemanticBoolean.to_true_or_false(true)).to eq(true) }
+      specify { expect(SemanticBoolean.to_true_or_false(true, by: :to_ruby_bool)).to eq(true) }
+      specify { expect(SemanticBoolean.to_true_or_false(true, by: :to_env_bool)).to eq(true) }
+      specify { expect(SemanticBoolean.to_true_or_false(true, by: :to_active_model_boolean_type)).to eq(true) }
+      specify { expect(SemanticBoolean.to_true_or_false(true, by: :blank?)).to eq(false) }
+      specify { expect(SemanticBoolean.to_true_or_false(true, by: :present?)).to eq(true) }
+      specify { expect { SemanticBoolean.to_true_or_false(true, by: :not_supported) }.to raise_error(NoMethodError) }
+      specify { expect(SemanticBoolean.to_true_or_false(true, unknown: "default")).to eq(true) }
+    end
+  end
 end
 # rubocop:enable Lint/BooleanSymbol

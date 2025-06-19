@@ -204,6 +204,7 @@ module SemanticBoolean
     #
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
+    # @param unknown [Object] Can be any type.
     # @return [Integer]
     #
     # @example Call without the `:by` keyword.
@@ -232,6 +233,7 @@ module SemanticBoolean
     #
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
+    # @param unknown [Object] Can be any type.
     # @return [String]
     #
     # @example Call without the `:by` keyword.
@@ -260,6 +262,7 @@ module SemanticBoolean
     #
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
+    # @param unknown [Object] Can be any type.
     # @return [String]
     #
     # @example Call without the `:by` keyword.
@@ -288,6 +291,7 @@ module SemanticBoolean
     #
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
+    # @param unknown [Object] Can be any type.
     # @return [String]
     #
     # @example Call without the `:by` keyword.
@@ -306,6 +310,35 @@ module SemanticBoolean
       return unknown if object.nil?
 
       public_send(by, object) ? "on" : "off"
+    end
+
+    ##
+    # Converts `object` to `true` or `false`.
+    # Uses `to_ruby_bool` method under the hood.
+    # Accepts optional `:by` keyword to rely on a different method.
+    # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
+    #
+    # @param object [Object] Can be any type.
+    # @param by [Symbol, String].
+    # @param unknown [Object] Can be any type.
+    # @return [String]
+    #
+    # @example Call without the `:by` keyword.
+    #   SemanticBoolean.to_on_or_off(false)
+    #   # => "off"
+    #
+    # @example Call with the `:by` keyword.
+    #   SemanticBoolean.to_yes_or_no(false, by: :blank?)
+    #   # => "on"
+    #
+    # @example Call with the `:unknown` keyword.
+    #   SemanticBoolean.to_on_or_off(nil, unknown: "unavailable")
+    #   # => "unavailable"
+    #
+    def to_true_or_false(object, by: :to_ruby_bool, unknown: false)
+      return unknown if object.nil?
+
+      public_send(by, object) ? true : false
     end
   end
 end

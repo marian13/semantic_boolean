@@ -71,18 +71,28 @@ SemanticBoolean.to_yes_or_no(any_object)
 SemanticBoolean.to_on_or_off(any_object)
 # => "on" or "off"
 
+SemanticBoolean.to_true_or_false(any_object)
+# => true or false
+
 ##
-# All the `to_one_or_zero`, `to_y_or_n`, `to_yes_or_no`, and `to_on_or_off` methods accept the `:by` keyword.
+# All the `to_one_or_zero`, `to_y_or_n`, `to_yes_or_no`, `to_on_or_off`, and `to_true_or_false` methods accept the `:by` keyword.
 # `:to_ruby_bool` is the default value.
 # `:to_bool`, `:to_env_bool`, `:to_active_model_boolean_type`, `:blank?` and `:present?` are also available.
 #
 SemanticBoolean.to_one_or_zero(any_object)
 SemanticBoolean.to_y_or_n(any_object, by: :to_ruby_bool)
-SemanticBoolean.to_y_or_n(any_object, by: :to_bool)
-SemanticBoolean.to_yes_or_no(any_object, by: :to_env_bool)
-SemanticBoolean.to_yes_or_no(any_object, by: :to_active_model_boolean_type)
-SemanticBoolean.to_on_or_off(any_object, by: :blank?)
-SemanticBoolean.to_on_or_off(any_object, by: :present?)
+SemanticBoolean.to_yes_or_no(any_object, by: :to_bool)
+SemanticBoolean.to_on_or_off(any_object, by: :to_env_bool)
+SemanticBoolean.to_true_or_false(any_object, by: :to_active_model_boolean_type)
+SemanticBoolean.to_one_or_zero(any_object, by: :blank?)
+SemanticBoolean.to_y_or_n(any_object, by: :present?)
+
+##
+# Also there is the `:unknown` keyword.
+# It allows to specify what should be returned when `object` is `nil`.
+#
+SemanticBoolean.to_one_or_zero(any_object, unknown: 127)
+SemanticBoolean.to_yes_or_no(any_object, by: :to_env_bool, unknown: "unavailable")
 ```
 
 Check the [specs](https://github.com/marian13/semantic_boolean/blob/main/spec/lib/semantic_boolean_spec.rb) to see a comprehensive comparison of all Semantic Boolean methods.
