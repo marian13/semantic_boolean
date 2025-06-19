@@ -134,7 +134,7 @@ module SemanticBoolean
       when Time
         false
       when Object
-        respond_to?(:empty?) ? !!empty? : false
+        object.respond_to?(:empty?) ? !!object.empty? : false
       else
         object.public_send(:blank?)
       end
