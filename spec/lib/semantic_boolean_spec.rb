@@ -147,11 +147,11 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(2.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(-1.0)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(BigDecimal("1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
-    specify { expect(bulk_to_bool(BigDecimal("0.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Kernel.BigDecimal("1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Kernel.BigDecimal("0.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(BigDecimal("2.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
-    specify { expect(bulk_to_bool(BigDecimal("-1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Kernel.BigDecimal("2.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Kernel.BigDecimal("-1.0"))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
     specify { expect(bulk_to_bool(1r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(0r)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
