@@ -212,7 +212,12 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(Class.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Module.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
-    specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [TypeError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
+
+    if Gem::Version.create(RUBY_VERSION) >= ::Gem::Version.create("2.5")
+      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [TypeError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
+    else
+      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
+    end
 
     specify { expect(bulk_to_bool(Class)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Module)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
