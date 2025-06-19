@@ -67,7 +67,7 @@ module SemanticBoolean
     #
     if ::Gem::Version.create(::RUBY_VERSION) >= ::Gem::Version.create("2.6")
       def to_env_bool(object)
-        string = object.to_s
+        string = ::Kernel.String(object)
 
         return false if string.empty?
 
@@ -136,7 +136,7 @@ module SemanticBoolean
       when Object
         object.respond_to?(:empty?) ? !!object.empty? : false
       else
-        object.public_send(:blank?)
+        object.__send__(:blank?)
       end
     end
 

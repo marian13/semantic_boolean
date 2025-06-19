@@ -6,13 +6,52 @@ require "set"
 # rubocop:disable Lint/BooleanSymbol
 RSpec.describe SemanticBoolean do
   example_group "to_bool methods" do
+    def normalize_message(message)
+      message.gsub("`", "'")
+    end
+
     def bulk_to_bool(object)
+      ruby_bool =
+        begin
+          SemanticBoolean.to_ruby_bool(object)
+        rescue => exception
+          [exception.class, normalize_message(exception.message)]
+        end
+
+      env_bool =
+        begin
+          SemanticBoolean.to_env_bool(object)
+        rescue => exception
+          [exception.class, normalize_message(exception.message)]
+        end
+
+      active_model_boolean_type =
+        begin
+          SemanticBoolean.to_active_model_boolean_type(object)
+        rescue => exception
+          [exception.class, normalize_message(exception.message)]
+        end
+
+      blank =
+        begin
+          SemanticBoolean.blank?(object)
+        rescue => exception
+          [exception.class, normalize_message(exception.message)]
+        end
+
+      present =
+        begin
+          SemanticBoolean.present?(object)
+        rescue => exception
+          [exception.class, normalize_message(exception.message)]
+        end
+
       {
-        ruby_bool: SemanticBoolean.to_ruby_bool(object),
-        env_bool: SemanticBoolean.to_env_bool(object),
-        active_model_boolean_type: SemanticBoolean.to_active_model_boolean_type(object),
-        blank: SemanticBoolean.blank?(object),
-        present: SemanticBoolean.present?(object)
+        ruby_bool: ruby_bool,
+        env_bool: env_bool,
+        active_model_boolean_type: active_model_boolean_type,
+        blank: blank,
+        present: present
       }
     end
 
@@ -174,8 +213,15 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(Set[])).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
     specify { expect(bulk_to_bool(Set[:foo])).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
-    specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(Class.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Module.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [TypeError, "can't convert BasicObject into String"], active_model_boolean_type: [NoMethodError, "undefined method 'hash' for an instance of BasicObject"], blank: [NoMethodError, "undefined method 'blank?' for an instance of BasicObject"], present: [NoMethodError, "undefined method 'blank?' for an instance of BasicObject"]}) }
+
+    specify { expect(bulk_to_bool(Class)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Module)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(Object)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+    specify { expect(bulk_to_bool(BasicObject)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
   end
 
   describe "#to_one_or_zero" do
