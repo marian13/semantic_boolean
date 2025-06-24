@@ -10,6 +10,18 @@ require "set"
 
 # rubocop:disable Lint/BooleanSymbol
 RSpec.describe SemanticBoolean do
+  example_group "constants" do
+    describe "::VERSION" do
+      it "returns version" do
+        expect(described_class::VERSION).to be_instance_of(String)
+      end
+
+      it "follows Semantic Versioning" do
+        expect(described_class::VERSION).to match(/\d+\.\d+\.\d+/)
+      end
+    end
+  end
+
   example_group "to_bool methods" do
     def bulk_to_bool(object)
       ruby_bool =
