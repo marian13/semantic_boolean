@@ -279,6 +279,20 @@ RSpec.describe SemanticBoolean do
     specify { expect(SemanticBoolean.boolean?(42)).to eq(false) }
   end
 
+  describe "#true?" do
+    specify { expect(SemanticBoolean.true?(true)).to eq(true) }
+    specify { expect(SemanticBoolean.true?(false)).to eq(false) }
+    specify { expect(SemanticBoolean.true?(nil)).to eq(false) }
+    specify { expect(SemanticBoolean.true?(42)).to eq(false) }
+  end
+
+  describe "#false?" do
+    specify { expect(SemanticBoolean.false?(true)).to eq(false) }
+    specify { expect(SemanticBoolean.false?(false)).to eq(true) }
+    specify { expect(SemanticBoolean.false?(nil)).to eq(false) }
+    specify { expect(SemanticBoolean.false?(42)).to eq(false) }
+  end
+
   describe "#to_one_or_zero" do
     context "when `object` is falsy" do
       specify { expect(SemanticBoolean.to_one_or_zero(false)).to eq(0) }

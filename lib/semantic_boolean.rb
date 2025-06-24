@@ -66,6 +66,30 @@ module SemanticBoolean
     end
 
     ##
+    # Returns `true` when `object` is `true`, returns `false` for all the other cases.
+    # @api public
+    # @param object [Object] Can be any type.
+    # @return [Boolean]
+    #
+    def true?(object)
+      return true if object == true
+
+      false
+    end
+
+    ##
+    # Returns `true` when `object` is `false`, returns `false` for all the other cases.
+    # @api public
+    # @param object [Object] Can be any type.
+    # @return [Boolean]
+    #
+    def false?(object)
+      return true if object == false
+
+      false
+    end
+
+    ##
     # Converts `object` to boolean using exactly the same logic as `blank?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
     #
     # @api public
