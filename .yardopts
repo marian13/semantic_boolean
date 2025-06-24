@@ -2,6 +2,8 @@
 --markup-provider commonmarker
 --output-dir docs/api
 --no-private
+--tag license
+--hide-tag license
 'lib/**/*.rb'
 -
 README.md
