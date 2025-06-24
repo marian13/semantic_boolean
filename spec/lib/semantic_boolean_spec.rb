@@ -272,6 +272,13 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(custom_object_with_blank)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
   end
 
+  describe "#boolean?" do
+    specify { expect(SemanticBoolean.boolean?(true)).to eq(true) }
+    specify { expect(SemanticBoolean.boolean?(false)).to eq(true) }
+    specify { expect(SemanticBoolean.boolean?(nil)).to eq(false) }
+    specify { expect(SemanticBoolean.boolean?(42)).to eq(false) }
+  end
+
   describe "#to_one_or_zero" do
     context "when `object` is falsy" do
       specify { expect(SemanticBoolean.to_one_or_zero(false)).to eq(0) }
