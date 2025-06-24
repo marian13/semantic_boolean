@@ -23,48 +23,23 @@ RSpec.describe SemanticBoolean do
   end
 
   example_group "to_bool methods" do
+    def normalize(&block)
+      block.call
+    rescue => exception
+      if exception.instance_of?(NoMethodError)
+        [exception.class, *exception.message.match(/['`](?<method>.*)['].*\s(?<class>.*)$/).values_at(:method, :class)]
+      else
+        [exception.class, exception.message]
+      end
+    end
+
     def bulk_to_bool(object)
-      ruby_bool =
-        begin
-          SemanticBoolean.to_ruby_bool(object)
-        rescue => exception
-          [exception.class]
-        end
-
-      env_bool =
-        begin
-          SemanticBoolean.to_env_bool(object)
-        rescue => exception
-          [exception.class]
-        end
-
-      active_model_boolean_type =
-        begin
-          SemanticBoolean.to_active_model_boolean_type(object)
-        rescue => exception
-          [exception.class]
-        end
-
-      blank =
-        begin
-          SemanticBoolean.blank?(object)
-        rescue => exception
-          [exception.class]
-        end
-
-      present =
-        begin
-          SemanticBoolean.present?(object)
-        rescue => exception
-          [exception.class]
-        end
-
       {
-        ruby_bool: ruby_bool,
-        env_bool: env_bool,
-        active_model_boolean_type: active_model_boolean_type,
-        blank: blank,
-        present: present
+        ruby_bool: normalize { SemanticBoolean.to_ruby_bool(object) },
+        env_bool: normalize { SemanticBoolean.to_env_bool(object) },
+        active_model_boolean_type: normalize { SemanticBoolean.to_active_model_boolean_type(object) },
+        blank: normalize { SemanticBoolean.blank?(object) },
+        present: normalize { SemanticBoolean.present?(object) }
       }
     end
 
@@ -76,7 +51,16 @@ RSpec.describe SemanticBoolean do
       end
     end
 
+    let(:custom_class_with_present) do
+      Class.new do
+        def present?
+          true
+        end
+      end
+    end
+
     let(:custom_object_with_blank) { custom_class_with_blank.new }
+    let(:custom_object_with_present) { custom_class_with_present.new }
 
     specify { expect(bulk_to_bool(true)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(false)).to eq({ruby_bool: false, env_bool: false, active_model_boolean_type: false, blank: true, present: false}) }
@@ -241,9 +225,9 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(Object.new)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
     if RUBY_ENGINE.match?("jruby")
-      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError], active_model_boolean_type: true, blank: [NoMethodError], present: [NoMethodError]}) }
+      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError, "to_s", "BasicObject"], active_model_boolean_type: true, blank: [NoMethodError, "blank?", "BasicObject"], present: [NoMethodError, "present?", "BasicObject"]}) }
     else
-      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError], active_model_boolean_type: [NoMethodError], blank: [NoMethodError], present: [NoMethodError]}) }
+      specify { expect(bulk_to_bool(BasicObject.new)).to eq({ruby_bool: true, env_bool: [NoMethodError, "to_s", "BasicObject"], active_model_boolean_type: [NoMethodError, "hash", "BasicObject"], blank: [NoMethodError, "blank?", "BasicObject"], present: [NoMethodError, "present?", "BasicObject"]}) }
     end
 
     specify { expect(bulk_to_bool(Class)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
@@ -270,6 +254,7 @@ RSpec.describe SemanticBoolean do
     specify { expect(bulk_to_bool(DateTime.new(2025))).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
 
     specify { expect(bulk_to_bool(custom_object_with_blank)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
+    specify { expect(bulk_to_bool(custom_object_with_present)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
   end
 
   describe "#boolean?" do

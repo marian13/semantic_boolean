@@ -102,36 +102,43 @@ module SemanticBoolean
     # @see https://api.rubyonrails.org/classes/ActiveRecord/Relation.html#method-i-blank-3F
     #
     def blank?(object)
-      return object.__send__(:blank?) if object.respond_to?(:blank?)
+      respond_to_blank =
+        begin
+          object.respond_to?(:blank?)
+        rescue ::NoMethodError
+          object.blank? # Only `BasicObject` does NOT respond to `respond_to?`.
+        end
+
+      return object.__send__(:blank?) if respond_to_blank
 
       case object
-      when NilClass
+      when ::NilClass
         true
-      when FalseClass
+      when ::FalseClass
         true
-      when TrueClass
+      when ::TrueClass
         false
-      when Array
+      when ::Array
         object.empty?
-      when Hash
+      when ::Hash
         object.empty?
-      when Symbol
+      when ::Symbol
         object.empty?
-      when String
+      when ::String
         object.empty? ||
           begin
             ACTIVE_SUPPORT_CORE_EXT_BLANK_RE.match?(object)
           rescue ::Encoding::CompatibilityError
             ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS[object.encoding].match?(object)
           end
-      when Numeric
+      when ::Numeric
         false
-      when Time
+      when ::Time
         false
-      when Object
+      when ::Object
         object.respond_to?(:empty?) ? !!object.empty? : false
       else
-        object.__send__(:blank?)
+        object.blank?
       end
     end
 
@@ -146,7 +153,49 @@ module SemanticBoolean
     # @see https://api.rubyonrails.org/classes/Object.html#method-i-present-3F
     #
     def present?(object)
-      !blank?(object)
+      respond_to_present =
+        begin
+          object.respond_to?(:present?)
+        rescue ::NoMethodError
+          object.present? # Only `BasicObject` does NOT respond to `respond_to?`.
+        end
+
+      return object.__send__(:present?) if respond_to_present
+      return !object.__send__(:blank?) if object.respond_to?(:blank?)
+
+      case object
+      when ::NilClass
+        false
+      when ::FalseClass
+        false
+      when ::TrueClass
+        true
+      when ::Array
+        !object.empty?
+      when ::Hash
+        !object.empty?
+      when ::Symbol
+        !object.empty?
+      when ::String
+        !(
+          object.empty? ||
+            begin
+              ACTIVE_SUPPORT_CORE_EXT_BLANK_RE.match?(object)
+            rescue ::Encoding::CompatibilityError
+              ACTIVE_SUPPORT_CORE_EXT_ENCODED_BLANKS[object.encoding].match?(object)
+            end
+        )
+      when ::Numeric
+        true
+      when ::Time
+        true
+      when ::Object
+        !(
+          object.respond_to?(:empty?) ? !!object.empty? : false
+        )
+      else
+        object.present?
+      end
     end
 
     ##
