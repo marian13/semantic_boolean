@@ -1,3 +1,6 @@
+<!-- AUTHOR: Marian Kostyk <mariankostyk13895@gmail.com> -->
+<!-- LICENSE: MIT <https://opensource.org/license/mit> -->
+
 # Semantic Boolean
 
 [![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)](https://www.ruby-lang.org/en/)
@@ -139,3 +142,7 @@ SKIP_AUTH=no
 ```
 
 To the Rails team. They made me a Ruby dev who can't live without Rails goodies in the non-Rails projects.
+
+---
+
+Copyright (c) 2025 Marian Kostyk.

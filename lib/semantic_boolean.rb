@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+##
+# @author Marian Kostyk <mariankostyk13895@gmail.com>
+# @license MIT <https://opensource.org/license/mit>
+##
+
 require_relative "semantic_boolean/version"
 
 require "set"
