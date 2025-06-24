@@ -87,13 +87,27 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>rubocop:disable Lint/BooleanSymbol</p>
-
+    
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Marian Kostyk <a href="mailto:mariankostyk13895@gmail.com">mariankostyk13895@gmail.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div>
   
@@ -586,11 +600,6 @@
       <pre class="lines">
 
 
-138
-139
-140
-141
-142
 143
 144
 145
@@ -618,10 +627,15 @@
 167
 168
 169
-170</pre>
+170
+171
+172
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_blank?'>blank?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='symbol'>:blank?</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:blank?</span><span class='rparen'>)</span>
@@ -732,12 +746,12 @@
       <pre class="lines">
 
 
-181
-182
-183</pre>
+186
+187
+188</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 181</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_present?'>present?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
   <span class='op'>!</span><span class='id identifier rubyid_blank?'>blank?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
@@ -820,12 +834,12 @@
       <pre class="lines">
 
 
-195
-196
-197</pre>
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_active_model_boolean_type'>to_active_model_boolean_type</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
   <span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="#TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES-constant" title="SemanticBoolean::TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES (constant)">TO_ACTIVE_MODEL_BOOLEAN_TYPE_FALSE_VALUES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
@@ -955,14 +969,14 @@ Accepts optional <code>:unknown</code> keyword that specify what to return when 
       <pre class="lines">
 
 
-309
-310
-311
-312
-313</pre>
+314
+315
+316
+317
+318</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 309</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 314</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_on_or_off'>to_on_or_off</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1094,14 +1108,14 @@ Accepts optional <code>:unknown</code> keyword that specify what to return when 
       <pre class="lines">
 
 
-222
-223
-224
-225
-226</pre>
+227
+228
+229
+230
+231</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 222</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 227</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_one_or_zero'>to_one_or_zero</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1190,12 +1204,12 @@ Just like Ruby does in the control expressions.</p>
       <pre class="lines">
 
 
-57
-58
-59</pre>
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_ruby_bool'>to_ruby_bool</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
   <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_object'>object</span>
@@ -1325,14 +1339,14 @@ Accepts optional <code>:unknown</code> keyword that specify what to return when 
       <pre class="lines">
 
 
-338
-339
-340
-341
-342</pre>
+343
+344
+345
+346
+347</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 338</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 343</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_true_or_false'>to_true_or_false</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1464,14 +1478,14 @@ Accepts optional <code>:unknown</code> keyword that specify what to return when 
       <pre class="lines">
 
 
-251
-252
-253
-254
-255</pre>
+256
+257
+258
+259
+260</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 251</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 256</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_y_or_n'>to_y_or_n</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1603,14 +1617,14 @@ Accepts optional <code>:unknown</code> keyword that specify what to return when 
       <pre class="lines">
 
 
-280
-281
-282
-283
-284</pre>
+285
+286
+287
+288
+289</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 280</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 285</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_yes_or_no'>to_yes_or_no</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:to_ruby_bool</span><span class='comma'>,</span> <span class='label'>unknown:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_unknown'>unknown</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1691,11 +1705,6 @@ Accepts optional <code>:unknown</code> keyword that specify what to return when 
       <pre class="lines">
 
 
-78
-79
-80
-81
-82
 83
 84
 85
@@ -1705,10 +1714,15 @@ Accepts optional <code>:unknown</code> keyword that specify what to return when 
 89
 90
 91
-92</pre>
+92
+93
+94
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/semantic_boolean.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_env_bool'>to_env_bool</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -1735,7 +1749,7 @@ Accepts optional <code>:unknown</code> keyword that specify what to return when 
 </div>
 
       <div id="footer">
-  Generated on Thu Jun 19 20:17:24 2025 by
+  Generated on Tue Jun 24 22:10:19 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>
