@@ -55,6 +55,7 @@ module SemanticBoolean
     ##
     # Returns `true` when `object` is `true` or `false`, returns `false` for all the other cases.
     # @api public
+    # @since 1.1.0
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
@@ -68,6 +69,7 @@ module SemanticBoolean
     ##
     # Returns `true` when `object` is `true`, returns `false` for all the other cases.
     # @api public
+    # @since 1.1.0
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
@@ -80,6 +82,7 @@ module SemanticBoolean
     ##
     # Returns `true` when `object` is `false`, returns `false` for all the other cases.
     # @api public
+    # @since 1.1.0
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
@@ -93,6 +96,7 @@ module SemanticBoolean
     # Converts `object` to boolean using exactly the same logic as `blank?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
@@ -146,6 +150,7 @@ module SemanticBoolean
     # Converts `object` to boolean using exactly the same logic as `present?` in Rails does (but with `Hash` instead of `Concurent::Map` for string encodings storage).
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
@@ -204,6 +209,7 @@ module SemanticBoolean
     # Just like Ruby does in the control expressions.
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @return [Boolean]
     #
@@ -218,6 +224,7 @@ module SemanticBoolean
     # A handy alias for `to_ruby_bool`.
     #
     # @api public
+    # @since 1.0.0
     # @return [Boolean]
     #
     alias_method :to_bool, :to_ruby_bool
@@ -230,6 +237,7 @@ module SemanticBoolean
       # - If yes, returns `true`, otherwise returns `false`.
       #
       # @api public
+      # @since 1.0.0
       # @param object [Object] Can be any type.
       # @return [Boolean]
       #
@@ -256,6 +264,7 @@ module SemanticBoolean
       # - If yes, returns `true`, otherwise returns `false`.
       #
       # @api public
+      # @since 1.0.0
       # @param object [Object] Can be any type.
       # @return [Boolean]
       #
@@ -287,6 +296,7 @@ module SemanticBoolean
     # Converts `object` to boolean (or `nil`) using exactly the same logic as `ActiveModel::Type::Boolean.new.cast(object)` does.
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @return [Boolean, nil]
     #
@@ -305,6 +315,7 @@ module SemanticBoolean
     # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
     # @param unknown [Object] Can be any type.
@@ -335,6 +346,7 @@ module SemanticBoolean
     # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
     # @param unknown [Object] Can be any type.
@@ -365,6 +377,7 @@ module SemanticBoolean
     # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
     # @param unknown [Object] Can be any type.
@@ -395,6 +408,7 @@ module SemanticBoolean
     # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
     # @param unknown [Object] Can be any type.
@@ -425,6 +439,7 @@ module SemanticBoolean
     # Accepts optional `:unknown` keyword that specify what to return when `object` is `nil`.
     #
     # @api public
+    # @since 1.0.0
     # @param object [Object] Can be any type.
     # @param by [Symbol, String].
     # @param unknown [Object] Can be any type.
