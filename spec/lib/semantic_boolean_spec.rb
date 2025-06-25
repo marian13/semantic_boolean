@@ -59,10 +59,14 @@ RSpec.describe SemanticBoolean do
       end
     end
 
+    let(:custom_basic_object_class) { Class.new(BasicObject) }
+    let(:custom_basic_object_with_kernel_class) { Class.new(BasicObject).tap { |klass| klass.include Kernel } }
     let(:custom_string_descendant_class) { Class.new(String) }
 
     let(:custom_object_with_blank) { custom_class_with_blank.new }
     let(:custom_object_with_present) { custom_class_with_present.new }
+    let(:custom_basic_object) { custom_basic_object_class.new }
+    let(:custom_basic_object_with_kernel) { custom_basic_object_with_kernel_class.new }
     let(:custom_string_descendant_true) { custom_string_descendant_class.new("true") }
     let(:custom_string_descendant_false) { custom_string_descendant_class.new("false") }
 
@@ -259,6 +263,14 @@ RSpec.describe SemanticBoolean do
 
     specify { expect(bulk_to_bool(custom_object_with_blank)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: true, present: false}) }
     specify { expect(bulk_to_bool(custom_object_with_present)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: false, present: true}) }
+
+    if RUBY_ENGINE.match?("jruby")
+      specify { expect(bulk_to_bool(custom_basic_object)).to eq({ruby_bool: true, env_bool: [NoMethodError, "to_s"], active_model_boolean_type: true, blank: [NoMethodError, "blank?"], present: [NoMethodError, "present?"]}) }
+    else
+      specify { expect(bulk_to_bool(custom_basic_object)).to eq({ruby_bool: true, env_bool: [NoMethodError, "to_s"], active_model_boolean_type: [NoMethodError, "hash"], blank: [NoMethodError, "blank?"], present: [NoMethodError, "present?"]}) }
+    end
+
+    specify { expect(bulk_to_bool(custom_basic_object_with_kernel)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: true, blank: [NoMethodError, "blank?"], present: [NoMethodError, "present?"]}) }
 
     specify { expect(bulk_to_bool(custom_string_descendant_true)).to eq({ruby_bool: true, env_bool: true, active_model_boolean_type: true, blank: false, present: true}) }
     specify { expect(bulk_to_bool(custom_string_descendant_false)).to eq({ruby_bool: true, env_bool: false, active_model_boolean_type: false, blank: false, present: true}) }
