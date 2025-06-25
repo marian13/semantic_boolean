@@ -60,6 +60,24 @@ SemanticBoolean.present?(any_object)
 # => true or false
 
 ##
+# Returns `true` only when object is `true` or `false`.
+#
+SemanticBoolean.boolean?(any_object)
+# => true or false
+
+##
+# Returns `true` only when object is `true`.
+#
+SemanticBoolean.true?(any_object)
+# => true or false
+
+##
+# Returns `true` only when object is `false`.
+#
+SemanticBoolean.false?(any_object)
+# => true or false
+
+##
 # The following methods do not return boolean values, but they are often utilized in a boolean context.
 ##
 SemanticBoolean.to_one_or_zero(any_object)
